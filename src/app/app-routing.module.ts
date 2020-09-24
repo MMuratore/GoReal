@@ -7,6 +7,7 @@ import { RegisterComponent } from './modules/account/components/register/registe
 import { Role } from './modules/account/models/role.enum';
 import { AuthGuardService } from './modules/account/services/auth-guard.service';
 import { NotFoundComponent } from './components/notFound/notFound.component';
+import { NotAllowedComponent } from './components/notAllowed/notAllowed.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   {path: 'notFound', component : NotFoundComponent},
+  {path: 'notAllowed', component : NotAllowedComponent},
   { path: '', component: HomeComponent},
   { path: '**', redirectTo: 'notFound' }
 ];

@@ -19,6 +19,7 @@ import { AboutComponent } from './components/about/about.component';
 import { HomeComponent } from './components/home/home.component';
 import { AccountModule } from './modules/account/account.module';
 import { NotFoundComponent } from './components/notFound/notFound.component';
+import { NotAllowedComponent } from './components/notAllowed/notAllowed.component';
 
 
 
@@ -27,7 +28,8 @@ import { NotFoundComponent } from './components/notFound/notFound.component';
     AppComponent,
     AboutComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    NotAllowedComponent
   ],
   imports: [
     BrowserModule,
