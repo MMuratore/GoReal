@@ -13,12 +13,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { AuthGuardService } from './services/auth-guard.service';
-import { AddressComponent } from './components/address/address.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, AddressComponent],
+  declarations: [LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
     AppRoutingModule,
