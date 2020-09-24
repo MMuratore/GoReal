@@ -1,0 +1,80 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false && isAuth()">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-action-list>
+      <button type="button" mat-list-item [routerLink]="['/home']" (click)="close()">
+        <mat-icon matListIcon>home</mat-icon> &nbsp;
+        <span>Home</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button type="button" mat-list-item [routerLink]="['/play']" (click)="close()">
+        <mat-icon matListIcon>hdr_strong</mat-icon> &nbsp;
+        <span>Play</span>
+      </button>
+      <button type="button" mat-list-item [routerLink]="['/tournament']" (click)="close()">
+        <mat-icon matListIcon>emoji_events</mat-icon> &nbsp;
+        <span>Tournament</span>
+      </button>
+      <button type="button" mat-list-item [routerLink]="['/leaderboards']" (click)="close()">
+        <mat-icon matListIcon>format_list_numbered</mat-icon> &nbsp;
+        <span>Leaderboards</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button type="button" mat-list-item [routerLink]="['/learn']" (click)="close()"> 
+        <mat-icon matListIcon>school</mat-icon> &nbsp;
+        <span>Learn</span>
+      </button>
+      <button type="button" mat-list-item [routerLink]="['/joseki']" (click)="close()">
+        <mat-icon matListIcon>account_tree</mat-icon> &nbsp;
+        <span>Joseki</span>
+      </button>
+      <button type="button" mat-list-item [routerLink]="['/demo']" (click)="close()">
+        <mat-icon matListIcon>widgets</mat-icon> &nbsp;
+        <span>Demo</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button type="button" mat-list-item [routerLink]="['/profile']" (click)="close()">
+        <mat-icon matListIcon>person</mat-icon> &nbsp;
+        <span>Profile</span>
+      </button>
+      <button type="button" mat-list-item [routerLink]="['/settings']" (click)="close()">
+        <mat-icon matListIcon>settings</mat-icon> &nbsp;
+        <span>Settings</span>
+      </button>
+      <button type="button" mat-list-item [routerLink]="['/about']" (click)="close()">
+        <mat-icon matListIcon>info</mat-icon> &nbsp;
+        <span>About</span>
+      </button>
+    </mat-action-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="sidenav-content">
+    <mat-toolbar color="primary">
+      <button type="button" mat-icon-button (click)="drawer.toggle()" *ngIf="(isHandset$ | async) && isAuth()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <a [routerLink]="['/home']">GoReal</a>
+      <span class="spacer"></span>
+      <button type="button" mat-icon-button *ngIf="isAuth(this.Role.SuperAdministrator)" [routerLink]="['/administrator']">
+        <mat-icon>admin_panel_settings</mat-icon>
+      </button>
+      <button type="button" mat-icon-button *ngIf="isAuth()" [routerLink]="['/profile']">
+        <mat-icon>person_pin</mat-icon>
+      </button>
+      <button type="button" mat-icon-button *ngIf="!isAuth()" [routerLink]="['/login']">
+        <mat-icon>login</mat-icon>
+      </button>
+      <button type="button" mat-icon-button *ngIf="isAuth()" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-toolbar>
+    <section class="main">
+      <router-outlet></router-outlet>
+    </section>
+    <footer>
+      <span>© 2020 Copyright</span>
+    </footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

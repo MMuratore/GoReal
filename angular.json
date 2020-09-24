@@ -145,6 +145,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "GoReal"
+    }
+  },
+  "defaultProject": "GoReal",
+  "cli": {
+    "analytics": "11b37a29-9d22-432d-9be6-98b384122b26"
+  }
 }

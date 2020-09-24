@@ -1,0 +1,30 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-card-content>
+          <mat-form-field appearance="standard" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput maxlength="320" type="email" [formControl]="f.email" required>
+            <mat-error *ngIf="f.email.invalid">{{getErrorMessageEmail()}}</mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="standard">
+            <mat-label>Password</mat-label>
+            <input matInput maxlength="20" [type]="hidePassword ? 'password' : 'text'" [formControl]="f.password" required>
+            <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="f.password.invalid">{{getErrorMessagePassword()}}</mat-error>
+          </mat-form-field>
+          <mat-error *ngIf="!(httpError === null)">{{getErrorMessage()}}</mat-error>
+      </mat-card-content>
+      <mat-card-actions>        
+        <button mat-stroked-button color="success" type="submit" [disabled]="form.invalid || isConnecting">SUBMIT</button> 
+        <button mat-button type="button" [routerLink]="['/register']">REGISTER</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

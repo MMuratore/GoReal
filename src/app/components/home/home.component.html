@@ -1,0 +1,14 @@
+  <h1 class="mat-h1">Home</h1>
+  <div class="column">
+    <h2>{{ user ? "Welcome" : "Want to Play" }}</h2>
+    <h2>{{ user ? user.goTag : "GoReal" }}</h2>
+  </div>
+
+  <mat-grid-list cols="2" rowHeight="fit">
+     <mat-grid-tile *ngIf="!user" [colspan]="(isHandset$ | async) ? 2 : 1" [rowspan]="1">
+      <button class="full-width" mat-raised-button color="primary" type="button" [routerLink]="['/login']">LOGIN</button>
+    </mat-grid-tile>
+    <mat-grid-tile *ngIf="!user" [colspan]="(isHandset$ | async) ? 2 : 1" [rowspan]="1">
+      <button class="full-width" mat-raised-button color="primary" type="button" [routerLink]="['/register']">REGISTER</button>
+    </mat-grid-tile>
+  </mat-grid-list>  
