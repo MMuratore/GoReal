@@ -1,5 +1,5 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
+<mat-sidenav-container class="sidenav-container" (backdropClick)="close()">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport disableClose
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false && isAuth()">
