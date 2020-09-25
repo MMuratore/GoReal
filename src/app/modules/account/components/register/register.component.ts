@@ -3,9 +3,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
-import { UserError } from '../../models/userError.enum'
-import { ConfirmValidator } from '../../helpers/confirm.validators';
-import { AuthService } from '../../services/auth.service';
+import { UserError } from '../../../../../models/userError.enum'
+import { ConfirmValidator } from '../../../../helpers/confirm.validators';
+import { AuthService } from '../../../../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -107,7 +107,6 @@ export class RegisterComponent implements OnInit {
     return this.f.confirm.hasError('confirmValidator') ? 'Password do not match' : '';
   }
   
-
   private getServerErrorMessage(httpError: HttpErrorResponse) {
     let msg : string;
     if(httpError.status == 400) {

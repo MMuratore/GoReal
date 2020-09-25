@@ -1,17 +1,16 @@
 <mat-card class="card">
-    <mat-card-header>
-      <mat-card-title>User infos</mat-card-title>
-    </mat-card-header>
-      <mat-card-content>
-        <mat-list>
-            <mat-list-item>{{user.goTag}} | {{user.email}}</mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>{{user.lastName}} {{user.firstName}}</mat-list-item>
-        </mat-list>
-        <mat-error *ngIf="!(httpError === null)">{{getErrorMessage()}}</mat-error>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-stroked-button color="accent" type="button" routerLink="/update/{{user.userId}}">UPDATE</button> 
-        <button mat-stroked-button color="warn" type="button" (click)="delete(user.userId)" [disabled]="isConnecting">DELETE</button> 
-      </mat-card-actions>
-  </mat-card>
+  <mat-card-header>
+    <mat-card-title>User infos</mat-card-title>
+  </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+          <mat-list-item>{{user.goTag}} | {{user.email}}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>{{user.lastName}} {{user.firstName}}</mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-stroked-button color="accent" type="button" routerLink="update/{{user.userId}}">UPDATE</button> 
+      <button mat-stroked-button color="warn" type="button" (click)="delete(user.userId)" [disabled]="isConnecting">DEACTIVATE</button> 
+    </mat-card-actions>
+</mat-card>

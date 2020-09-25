@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { UserError } from '../../models/userError.enum';
-import { AuthService } from '../../services/auth.service';
+import { UserError } from '../../../../../models/userError.enum';
+import { AuthService } from '../../../../../services/auth.service';
 
 @Component({
   templateUrl: './login.component.html',

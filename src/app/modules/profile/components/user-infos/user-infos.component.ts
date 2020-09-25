@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../account/models/user.model';
+import { User } from '../../../../../models/user.model';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { ConfirmBoxComponent } from '../../../../components/confirm-box/confirm-box.component';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../../../../services/user.service';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { AuthService } from '../../../../modules/account/services/auth.service';
+import { AuthService } from '../../../../../services/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'profile-user-infos',
@@ -43,24 +44,21 @@ export class UserInfosComponent implements OnInit {
             this.authService.logout();
             this.router.navigate(['/login']);         
           },
-          httpError => {
-            this.getErrorMessage(httpError.status);
+          error => {
+            this.getServerErrorMessage(error);
             this.isConnecting = false;
           });
       }
     })
   }
 
-  public getErrorMessage(error: number) {
+  private getServerErrorMessage(httpError: HttpErrorResponse) {
     let msg : string;
-    if(error == 404)
-      msg = '...'
-    else
-      msg = 'Unable to connect to server'
-    this.httpError = null;
-    let snackBarRef = this.snackbar.open(msg, 'Dismiss', {
-      duration: 3000
-    });
-    
+    if(httpError.status == 404) 
+      msg = 'Unable to connect to server';
+    if(msg)
+      this.snackbar.open(msg, 'Dismiss', {
+        duration: 3000
+      });
   }
 }

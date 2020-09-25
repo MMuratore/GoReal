@@ -3,9 +3,9 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import {MatSidenav} from '@angular/material/sidenav';
-import { AuthService } from 'src/app/modules/account/services/auth.service';
-import { Role } from 'src/app/modules/account/models/role.enum';
-import { User } from 'src/app/modules/account/models/user.model';
+import { AuthService } from '../../../services/auth.service';
+import { Role } from '../../../models/role.enum';
+import { User } from '../../../models/user.model';
 
 @Component({
   selector: 'app-root',
@@ -40,7 +40,6 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    console.log('logout')
     this.authService.logout();
   }
 

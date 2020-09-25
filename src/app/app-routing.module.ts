@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from './components/about/about.component';
 import { HomeComponent } from './components/home/home.component';
-import { Role } from './modules/account/models/role.enum';
-import { AuthGuardService } from './modules/account/services/auth-guard.service';
+import { AuthGuardService } from '../services/auth-guard.service';
 import { NotFoundComponent } from './components/notFound/notFound.component';
 import { NotAllowedComponent } from './components/notAllowed/notAllowed.component';
+import { Role } from '../models/role.enum';
 
 
 const routes: Routes = [
@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'profile', canActivate : [AuthGuardService], loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule) },
   { path: 'administrator', canActivate : [AuthGuardService], data: {roles: Role.SuperAdministrator}, loadChildren: () => import('./modules/administrator/administrator.module').then(m => m.AdministratorModule) },
   { path: 'settings', canActivate : [AuthGuardService], loadChildren: () => import('./modules/settings/settings.module').then(m => m.SettingsModule) },
-  { path: '**', redirectTo: '/notFound' }
+  //{ path: '**', redirectTo: '/notFound' }
 ];
 
 @NgModule({

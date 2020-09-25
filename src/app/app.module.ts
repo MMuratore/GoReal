@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AccountModule } from './modules/account/account.module';
 import { NotFoundComponent } from './components/notFound/notFound.component';
 import { NotAllowedComponent } from './components/notAllowed/notAllowed.component';
+import { ConfirmBoxComponent } from './components/confirm-box/confirm-box.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NotAllowedComponent } from './components/notAllowed/notAllowed.componen
     AboutComponent,
     HomeComponent,
     NotFoundComponent,
-    NotAllowedComponent
+    NotAllowedComponent,
+    ConfirmBoxComponent
   ],
   imports: [
     BrowserModule,

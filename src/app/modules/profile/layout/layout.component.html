@@ -1,8 +1,11 @@
-<mat-grid-list cols="2" rowHeight="fit">
-  <mat-grid-tile [colspan]="(isHandset$ | async) ? 2 : 1" [rowspan]="1">
+<mat-grid-list cols="2" rowHeight="fit" gutterSize="1rem">
+  <mat-grid-tile class="userInfos" [colspan]="(isHandset$ | async) ? 2 : 1" [rowspan]="1">
     <profile-user-infos></profile-user-infos>
   </mat-grid-tile>
-  <mat-grid-tile [colspan]="(isHandset$ | async) ? 2 : 1" [rowspan]="1">
-    <button class="full-width" mat-raised-button color="primary" type="button" [routerLink]="['/register']">REGISTER</button>
+  <mat-grid-tile class="history" [colspan]="(isHandset$ | async) ? 2 : 1" [rowspan]="3">
+    <profile-game-history></profile-game-history>
+  </mat-grid-tile>
+  <mat-grid-tile class="router-outlet" [colspan]="(isHandset$ | async) ? 2 : 1" [rowspan]="2">
+    <router-outlet></router-outlet>
   </mat-grid-tile>
 </mat-grid-list>  

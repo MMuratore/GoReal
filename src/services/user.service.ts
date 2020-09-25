@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
-import { User } from '../../../modules/account/models/user.model';
+import { User } from '../models/user.model';
 import { environment } from 'src/environments/environment';
-import { AuthService } from '../../account/services/auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
