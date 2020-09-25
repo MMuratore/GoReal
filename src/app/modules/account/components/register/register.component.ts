@@ -6,6 +6,8 @@ import { first } from 'rxjs/operators';
 import { UserError } from '../../models/userError.enum'
 import { ConfirmValidator } from '../../helpers/confirm.validators';
 import { AuthService } from '../../services/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   templateUrl: './register.component.html',
@@ -14,10 +16,10 @@ import { AuthService } from '../../services/auth.service';
 export class RegisterComponent implements OnInit {
   form: FormGroup;
   hidePassword: boolean = true;
-  httpError: number = null;
   isConnecting: boolean = false;
 
   constructor(
+    private snackbar: MatSnackBar,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -41,32 +43,24 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
 
-    if (this.form.invalid) {
-        return;
-    }
-    this.isConnecting = true;
+  if (this.form.invalid) {
+      return;
+  }
+  this.isConnecting = true;
 
-    this.authService.register(this.form.value)
-        .pipe(first())
-        .subscribe(
-            data => {
-              this.router.navigate(['../login'], { relativeTo: this.route });
-            },
-            httpError => {
-              this.httpError = httpError.status;
-              this.isConnecting = false;
-              this.form.reset(this.form.value)
+  this.authService.register(this.form.value)
+    .pipe(first())
+    .subscribe(
+      () => {
+        this.router.navigate(['../login'], { relativeTo: this.route });
+      },
+      error => {
+        this.isConnecting = false;
+        this.form.reset(this.form.value);
+        this.getServerErrorMessage(error);
+      });
+  }
 
-              switch (+httpError.error.detail) {
-                case UserError.GoTagNotUnique:
-                  this.f.goTag.setErrors({goTagUse:true});
-                  break;
-                case UserError.EmailNotUnique:
-                  this.f.email.setErrors({emailUse:true});
-                  break;
-              }
-            });
-    }
   getErrorMessageGoTag() {
     if (this.f.goTag.hasError('required')) {
       return 'You must enter a value';
@@ -113,11 +107,25 @@ export class RegisterComponent implements OnInit {
     return this.f.confirm.hasError('confirmValidator') ? 'Password do not match' : '';
   }
   
-  getErrorMessage() {
-    if(this.httpError == 404)
-      return '...';
-    this.httpError = null;
-    return 'Unable to connect to server';
+
+  private getServerErrorMessage(httpError: HttpErrorResponse) {
+    let msg : string;
+    if(httpError.status == 400) {
+      if(httpError.error.type == UserError.GoTagNotUnique)
+        this.f.goTag.setErrors({goTagUse:true});
+      if(httpError.error.type == UserError.EmailNotUnique)
+        this.f.email.setErrors({emailUse:true});
+    }
+    else if(httpError.status == 404) {
+      if(httpError.error.type == UserError.NotFound)
+        msg = 'invalid login or password';
+    }
+    else
+      msg = 'Unable to connect to server';
+    if(msg)
+      this.snackbar.open(msg, 'Dismiss', {
+        duration: 3000
+      });
   }
 }
 

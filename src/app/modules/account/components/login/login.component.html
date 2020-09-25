@@ -19,7 +19,6 @@
             </button>
             <mat-error *ngIf="f.password.invalid">{{getErrorMessagePassword()}}</mat-error>
           </mat-form-field>
-          <mat-error *ngIf="!(httpError === null)">{{getErrorMessage()}}</mat-error>
       </mat-card-content>
       <mat-card-actions>        
         <button mat-stroked-button color="success" type="submit" [disabled]="form.invalid || isConnecting">SUBMIT</button> 

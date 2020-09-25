@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  private userSubject: BehaviorSubject<User>;
+  public userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
   
   constructor(

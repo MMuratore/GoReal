@@ -14,7 +14,6 @@ import { User } from 'src/app/modules/account/models/user.model';
 })
 export class AppComponent implements OnInit {
   title = 'GoReal';
-  isDark:boolean = true;
   public Role = Role;
   public user : User;
   
@@ -41,13 +40,8 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
+    console.log('logout')
     this.authService.logout();
-  }
-
-  isAuth(roles : Role = Role.None) : boolean {
-    if(this.user)
-      return roles === (this.user.roles & roles);
-    return false;
   }
 
   close() {

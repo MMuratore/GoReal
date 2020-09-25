@@ -1,27 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ProfileRoutingModule } from './profile-routing.module';
+import { SharedModule } from '../shared/shared.module';
+
 import { LayoutComponent } from './layout/layout.component';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatButtonModule } from '@angular/material/button';
-import { MatListModule } from '@angular/material/list';
+import { UserInfosComponent } from './components/user-infos/user-infos.component';
 
 
 @NgModule({
-  declarations: [LayoutComponent],
+  declarations: [LayoutComponent, UserInfosComponent],
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
+    SharedModule
   ]
 })
 export class ProfileModule { }

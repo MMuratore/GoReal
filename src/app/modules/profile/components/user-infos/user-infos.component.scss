@@ -1,0 +1,14 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    height: 100%;
+    margin: 1%;
+  }
+  
+mat-card {
+    flex: 1 1 auto;
+}
+mat-list {
+    width: 60vw;
+}

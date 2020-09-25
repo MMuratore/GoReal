@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { UserError } from '../../models/userError.enum';
@@ -13,10 +15,10 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   returnUrl: string;
   hidePassword: boolean = true;
-  httpError = null;
   isConnecting: boolean = false;
   
   constructor(
+    private snackbar: MatSnackBar,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -29,7 +31,7 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20), 
                       Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&+])[A-Za-z\d@$!%*?&+]{8,}$/)]]
     });
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
   }
 
   get f() { return this.form.controls; }
@@ -43,12 +45,12 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.f.email.value, this.f.password.value)
         .pipe(first())
         .subscribe(
-            data => {
+            () => {
                 this.router.navigate([this.returnUrl]);
             },
             error => {
               this.isConnecting = false;
-              this.httpError = error;
+              this.getServerErrorMessage(error);
             });
   }
   
@@ -73,20 +75,23 @@ export class LoginComponent implements OnInit {
     return this.f.password.hasError('pattern') ? 'must contain at least one uppercase letter, one lowercase letter, one number and one special character (@$!%*?&+)' : '';
   }
 
-  getErrorMessage() {
-    console.log()
-    if(this.httpError.status == 400) {
-      if(this.httpError.error.detail == UserError.Inactive)
-        return 'your account is inactive';
-      
-      if(this.httpError.error.detail == UserError.Ban)
-        return 'your account is ban';
+  private getServerErrorMessage(httpError: HttpErrorResponse) {
+    let msg : string;
+    if(httpError.status == 400) {
+      if(httpError.error.type == UserError.Inactive)
+        msg = 'your account is inactive';
+      if(httpError.error.type == UserError.Ban)
+        msg = 'your account is ban';
     }
-    if(this.httpError.status == 404) {
-      return 'invalid login or password';
+    else if(httpError.status == 404) {
+      if(httpError.error.type == UserError.NotFound)
+        msg = 'invalid login or password';
     }
-
-    this.httpError = null;
-    return 'Unable to connect to server';
+    else
+      msg = 'Unable to connect to server';
+    if(msg)
+      this.snackbar.open(msg, 'Dismiss', {
+        duration: 3000
+      });
   }
 }
