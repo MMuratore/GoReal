@@ -12,7 +12,7 @@ const routes: Routes = [{ path: '', component: LayoutComponent, children: [
     component: UserUpdateComponent, 
   },
   {
-    path: 'gameInfos',
+    path: 'gameInfos/:id',
     component: GameInfosComponent, 
   },
 ] }];

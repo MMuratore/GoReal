@@ -1,11 +1,29 @@
-<mat-grid-list cols="2" rowHeight="fit" gutterSize="1rem">
-  <mat-grid-tile class="userInfos" [colspan]="(isHandset$ | async) ? 2 : 1" [rowspan]="1">
-    <profile-user-infos></profile-user-infos>
-  </mat-grid-tile>
-  <mat-grid-tile class="history" [colspan]="(isHandset$ | async) ? 2 : 1" [rowspan]="3">
-    <profile-game-history></profile-game-history>
-  </mat-grid-tile>
-  <mat-grid-tile class="router-outlet" [colspan]="(isHandset$ | async) ? 2 : 1" [rowspan]="2">
-    <router-outlet></router-outlet>
-  </mat-grid-tile>
-</mat-grid-list>  
+<div class="grid-container">
+  <h1 class="mat-h1">Play</h1>
+  <mat-grid-list cols="{{ ( cardLayout | async )?.columns }}" rowHeight="235px">
+    <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard.cols"
+      [rowspan]="( cardLayout | async )?.miniCard.rows">
+      <play-mini-card [icon]="'timelapse'" [value]="'36h'" [description]="'Game Time'"></play-mini-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard.cols"
+      [rowspan]="( cardLayout | async )?.miniCard.rows">
+      <play-mini-card [icon]="'stars'" [value]="'55%'" [description]="'Victory Ratio'"></play-mini-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard.cols"
+      [rowspan]="( cardLayout | async )?.miniCard.rows">
+      <play-mini-card [icon]="'videogame_asset'" [value]="'487'" [description]="'Game Number'"></play-mini-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.card.cols"
+      [rowspan]="( cardLayout | async )?.card.rows">
+      <profile-user-infos></profile-user-infos>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.table.cols" 
+      [rowspan]="( cardLayout | async )?.table.rows">
+        <play-table></play-table>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.maxCard.cols"
+      [rowspan]="( cardLayout | async )?.maxCard.rows">
+      <router-outlet></router-outlet>
+    </mat-grid-tile>
+  </mat-grid-list>
+ </div>

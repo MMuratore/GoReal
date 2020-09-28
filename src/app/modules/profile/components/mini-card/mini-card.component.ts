@@ -7,14 +7,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MiniCardComponent implements OnInit {
   @Input() icon: string;
-  @Input() title: string;
   @Input() value: number;
-  @Input() color: string;
-  @Input() isIncrease: boolean;
-  @Input() isCurrency: boolean;
-  @Input() duration: string;
-  @Input() percentValue: number;
-  
+  @Input() description: string;
+
   constructor() { }
 
   ngOnInit(): void {

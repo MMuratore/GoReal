@@ -5,7 +5,7 @@
       [opened]="(isHandset$ | async) === false && user">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-action-list>
-      <app-sidenav-item [icon]="'home'" [title]="'Home'" [link]="'home'" [click]="close"></app-sidenav-item>
+      <app-sidenav-item [icon]="'home'" [title]="'Home'" [link]="'home'" (click)="close()"></app-sidenav-item>
       <mat-divider></mat-divider>
       <ng-container *ngFor="let link of multiLink">
         <app-sidenav-item [icon]="link.icon" [title]="link.title" [link]="link.link" (click)="link.click()"></app-sidenav-item>

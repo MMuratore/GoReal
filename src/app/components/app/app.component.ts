@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   soloLink = [
     {icon: 'school', title: 'Learn', link: 'learn', click: this.close},
     {icon: 'account_tree', title: 'Joseki', link: 'joseki', click: this.close},
-    {icon: 'widgets', title: 'Demo', link: 'demo', click: this.close}
+    {icon: 'widgets', title: 'Demo', link: 'demo', click: this.close},
   ];
   userLink = [
     {icon: 'person', title: 'Profile', link: 'profile', click: this.close},
