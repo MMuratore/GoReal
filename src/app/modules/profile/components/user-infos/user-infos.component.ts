@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../../../models/user.model';
+import { User } from '../../../../models/user.model';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { ConfirmBoxComponent } from '../../../../components/confirm-box/confirm-box.component';
-import { UserService } from '../../../../../services/user.service';
+import { UserService } from '../../../../services/user.service';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { AuthService } from '../../../../../services/auth.service';
+import { AuthService } from '../../../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

@@ -18,12 +18,10 @@ export class AuthGuardService implements CanActivate {
       const user = this.authService.userValue;
       if (user) {
         if(typeof roles !== "undefined") {
-          console.log("pass")
           if(roles === (user.roles & roles))
             return true;
           else
           {
-            console.log("pass")
             this.router.navigate(['/notAllowed'], { queryParams: { returnUrl: state.url }});
             return false;
           }

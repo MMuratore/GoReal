@@ -1,0 +1,4 @@
+<button type="button" mat-list-item [routerLink]="[link]" (click)="click">
+    <mat-icon matListIcon *ngIf="icon">{{icon}}</mat-icon> &nbsp;
+    <span *ngIf="title">{{title}}</span>
+  </button>

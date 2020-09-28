@@ -3,28 +3,32 @@ import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
+  selector: 'play-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent {
-  /** Based on the screen size, switch from standard to one column per row */
-  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+  cardLayout  = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       if (matches) {
-        return [
-          { title: 'Card 1', cols: 1, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
-          { title: 'Card 3', cols: 1, rows: 1 },
-          { title: 'Card 4', cols: 1, rows: 1 }
-        ];
+        return {
+          columns: 3,
+          miniCard: { cols: 1, rows: 1 },
+          card: { cols: 3, rows: 2 },
+          table: { cols: 3, rows: 2 },
+          maxCard: { cols: 3, rows: 3 },
+
+        };
       }
 
-      return [
-        { title: 'Card 1', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 2 },
-        { title: 'Card 4', cols: 1, rows: 1 }
-      ];
+      return {
+        columns: 5,
+        miniCard: { cols: 1, rows: 1 },
+        card: { cols: 2, rows: 1 },
+        table: { cols: 2, rows: 2 },
+        maxCard: { cols: 3, rows: 2 },
+
+      };
     })
   );
 

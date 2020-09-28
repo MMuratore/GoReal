@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { map, shareReplay } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
-import { AuthService } from 'src/services/auth.service';
-import { User } from 'src/models/user.model';
+
+import { AuthService } from '../../services/auth.service';
+import { User } from '../../models/user.model';
 
 
 @Component({

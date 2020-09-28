@@ -1,24 +1,32 @@
 <div class="grid-container">
-  <h1 class="mat-h1">Play</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
+  <h1 class="mat-h1">Dashboard</h1>
+  <mat-grid-list cols="{{ ( cardLayout | async )?.columns }}" rowHeight="235px">
+    <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard.cols"
+      [rowspan]="( cardLayout | async )?.miniCard.rows">
+      <play-mini-card [icon]="'home'" [duration]="'29+'" [title]="'title'" [value]="5" [color]="'primary'" [percentValue]="50"></play-mini-card>
     </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard.cols"
+      [rowspan]="( cardLayout | async )?.miniCard.rows">
+      <play-card title="Card 2"><div>Mini Card Content Here</div></play-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard.cols"
+      [rowspan]="( cardLayout | async )?.miniCard.rows">
+      <play-card title="Card 2"><div>Mini Card Content Here</div></play-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.card.cols"
+      [rowspan]="( cardLayout | async )?.card.rows">
+      <play-card title="Card 1"><div>Chart Content Here</div></play-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.table.cols" 
+      [rowspan]="( cardLayout | async )?.table.rows">
+      <play-card title="History">
+        <play-table></play-table>
+      </play-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.maxCard.cols"
+      [rowspan]="( cardLayout | async )?.maxCard.rows">
+      <play-card title="Card 2"><div>Chart Content Here</div></play-card>
+    </mat-grid-tile>
+  
   </mat-grid-list>
-</div>
+ </div>

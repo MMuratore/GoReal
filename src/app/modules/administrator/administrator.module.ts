@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { PlayRoutingModule } from './administrator-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
-import { LayoutComponent } from './layout/layout.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 
 @NgModule({
-  declarations: [LayoutComponent],
+  declarations: [UserListComponent],
   imports: [
     CommonModule,
     PlayRoutingModule,

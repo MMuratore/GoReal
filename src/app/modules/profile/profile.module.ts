@@ -8,6 +8,9 @@ import { UserInfosComponent } from './components/user-infos/user-infos.component
 import { UserUpdateComponent } from './components/user-update/user-update.component';
 import { GameInfosComponent } from './components/game-infos/game-infos.component';
 import { GameHistoryComponent } from './components/game-history/game-history.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { GameHistoryComponent } from './components/game-history/game-history.com
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    SharedModule
+    SharedModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ]
 })
 export class ProfileModule { }

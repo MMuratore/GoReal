@@ -12,6 +12,15 @@ import { AccountModule } from './modules/account/account.module';
 import { NotFoundComponent } from './components/notFound/notFound.component';
 import { NotAllowedComponent } from './components/notAllowed/notAllowed.component';
 import { ConfirmBoxComponent } from './components/confirm-box/confirm-box.component';
+import { SidenavItemComponent } from './components/sidenav-item/sidenav-item.component';
+import { ToolbarItemComponent } from './components/toolbar-item/toolbar-item.component';
+import { TestComponent } from './test/test.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -21,14 +30,23 @@ import { ConfirmBoxComponent } from './components/confirm-box/confirm-box.compon
     HomeComponent,
     NotFoundComponent,
     NotAllowedComponent,
-    ConfirmBoxComponent
+    ConfirmBoxComponent,
+    SidenavItemComponent,
+    ToolbarItemComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AccountModule,
-    SharedModule
+    SharedModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,11 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { ConfirmValidator } from '../../../../helpers/confirm.validators';
-import { User } from '../../../../../models/user.model';
-import { UserService } from '../../../../../services/user.service';
-import { AuthService } from 'src/services/auth.service';
+import { User } from '../../../../models/user.model';
+import { UserService } from '../../../../services/user.service';
+import { AuthService } from '../../../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { UserError } from 'src/models/userError.enum';
+import { UserError } from '../../../../models/userError.enum';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
