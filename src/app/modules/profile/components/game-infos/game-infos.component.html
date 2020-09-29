@@ -1,1 +1,34 @@
-<p>game-infos works!</p>
+<mat-card>
+    <mat-card-header>
+      <div mat-card-avatar><mat-icon class="icon" >games</mat-icon></div>
+      <mat-card-title>Game Infos</mat-card-title>
+      <mat-card-subtitle>{{game.Date | date:'medium'}}</mat-card-subtitle>
+      <span class="spacer"></span>
+      <div class="header-details">
+        <span>Result: {{game.Result}}</span>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="details">
+        <mat-icon class="icon-black">circle</mat-icon>
+        <span>{{game.BlackPlayer.goTag}}</span>
+        <span>Rank: {{game.BlackRank}}</span>
+        <span>Capture: {{game.BlackCapture}}</span>
+      </div>
+      <div class="details">
+        <span>{{game.Rule.RuleName}} Rule</span>
+        <span>{{game.TimeControl.Speed}} {{game.TimeControl.OverTime}}</span>
+        &nbsp;
+        <h1>Vs</h1>
+        <span>Size: {{game.Size}}x{{game.Size}}</span>
+        <span>Komi: {{game.Komi}}</span>
+        <span>Handicap: {{game.Handicap}}</span>
+      </div>
+      <div class="details">
+        <mat-icon class="icon-white">circle</mat-icon>
+        <span>{{game.WhitePlayer.goTag}}</span>
+        <span>Rank: {{game.WhiteRank}}</span>
+        <span>Capture: {{game.WhiteCapture}}</span>
+      </div>
+    </mat-card-content>
+  </mat-card>

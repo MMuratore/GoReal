@@ -3,10 +3,39 @@
     flex-direction: column;
     flex: 1 1 auto;
     height: 100%;
-    margin: 1%;
-    min-width: 450px;
   }
 
-.stretch {
-    width: 100%;
+mat-card-header{
+  margin-bottom: 1rem;
+}
+
+label{
+  font-size: 1rem;
+}
+
+.icon {
+  margin-left: 1rem;
+  transform: scale(1.8);
+}
+
+button.mat-icon-button{
+  height: 100px;
+
+}
+.full-width {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
 }

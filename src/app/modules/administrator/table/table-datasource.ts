@@ -6,22 +6,19 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 
 // TODO: Replace this with your own data model type
 export interface TableItem {
-  Id: number;
-  Date: Date;
-  Opponent: string;
-  Result: string;
+  id: number;
+  goTag: string;
+  email: string;
 }
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: TableItem[] = [
-  {Id: 1, Date: new Date(2020,12,1), Opponent: 'Hydrogen', Result: 'B+5'},
-  {Id: 2, Date: new Date(2020,12,1), Opponent: 'Hydrogen', Result: 'B+5'},
-  {Id: 3, Date: new Date(2020,12,1), Opponent: 'Hydrogen', Result: 'B+5'},
-  {Id: 4, Date: new Date(2020,12,1), Opponent: 'Hydrogen', Result: 'B+5'},
-  {Id: 5, Date: new Date(2020,12,1), Opponent: 'Hydrogen', Result: 'B+5'},
-  {Id: 6, Date: new Date(2020,12,1), Opponent: 'Hydrogen', Result: 'B+5'},
-  {Id: 7, Date: new Date(2020,12,1), Opponent: 'Hydrogen', Result: 'B+5'},
-  {Id: 8, Date: new Date(2020,12,1), Opponent: 'Hydrogen', Result: 'B+5'},
+  {id: 1, goTag: 'Hydrogen', email: 'Hydroge@Solary.com'},
+  {id: 2, goTag: 'Hydrogen', email: 'Hydroge@Solary.com'},
+  {id: 3, goTag: 'Hydrogen', email: 'Hydroge@Solary.com'},
+  {id: 4, goTag: 'Hydrogen', email: 'Hydroge@Solary.com'},
+  {id: 5, goTag: 'Hydrogen', email: 'Hydroge@Solary.com'},
+  {id: 6, goTag: 'Hydrogen', email: 'Hydroge@Solary.com'},
 ];
 
 /**
@@ -84,8 +81,8 @@ export class TableDataSource extends DataSource<TableItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'Opponent': return compare(a.Opponent, b.Opponent, isAsc);
-        case 'Result': return compare(a.Result, b.Result, isAsc);
+        case 'id': return compare(a.id, b.id, isAsc);
+        case 'goTag': return compare(a.goTag, b.goTag, isAsc);
         default: return 0;
       }
     });

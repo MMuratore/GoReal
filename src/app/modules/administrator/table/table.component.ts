@@ -5,7 +5,7 @@ import { MatTable } from '@angular/material/table';
 import { TableDataSource, TableItem } from './table-datasource';
 
 @Component({
-  selector: 'profile-table',
+  selector: 'administrator-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
@@ -16,7 +16,7 @@ export class TableComponent implements AfterViewInit, OnInit {
   dataSource: TableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['Date', 'Opponent', 'Result', 'Link'];
+  displayedColumns = ['id', 'goTag', 'email', 'actions'];
 
   ngOnInit() {
     this.dataSource = new TableDataSource();

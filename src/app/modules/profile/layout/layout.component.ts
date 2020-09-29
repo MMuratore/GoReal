@@ -14,20 +14,19 @@ export class LayoutComponent {
         return {
           columns: 3,
           miniCard: { cols: 1, rows: 1 },
-          card: { cols: 3, rows: 2 },
+          card: { cols: 3, rows: 1 },
           table: { cols: 3, rows: 2 },
-          maxCard: { cols: 3, rows: 3 },
+          maxCard: { cols: 3, rows: 2 },
 
         };
       }
 
       return {
-        columns: 5,
-        miniCard: { cols: 1, rows: 1 },
-        card: { cols: 2, rows: 1 },
-        table: { cols: 2, rows: 2 },
-        maxCard: { cols: 3, rows: 2 },
-
+        columns: 10,
+        miniCard: { cols: 2, rows: 1 },
+        card: { cols: 4, rows: 1 },
+        table: { cols: 4, rows: 2 },
+        maxCard: { cols: 6, rows: 2 },
       };
     })
   );

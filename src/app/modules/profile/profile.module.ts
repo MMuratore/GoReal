@@ -9,13 +9,6 @@ import { UserUpdateComponent } from './components/user-update/user-update.compon
 import { GameInfosComponent } from './components/game-infos/game-infos.component';
 import { MiniCardComponent } from './components/mini-card/mini-card.component';
 import { TableComponent } from './components/table/table.component';
-import { CardComponent } from './components/card/card.component';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatCardModule } from '@angular/material/card';
-import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -25,20 +18,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     UserInfosComponent, 
     UserUpdateComponent, 
     GameInfosComponent,
-    CardComponent,
     TableComponent,
     MiniCardComponent
   ],
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    SharedModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatCardModule,
-    ReactiveFormsModule
+    SharedModule
   ]
 })
 export class ProfileModule { }

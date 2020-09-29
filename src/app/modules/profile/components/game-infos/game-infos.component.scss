@@ -1,0 +1,52 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    height: 100%;
+  }
+
+
+mat-card-content{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+mat-card-footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-details{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.details{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.mat-card-avatar .icon {
+  margin: .5rem;
+  transform: scale(2);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.icon-black {
+  transform: scale(4);
+  color: black;
+  margin: 3rem;
+}
+
+
+.icon-white {
+  transform: scale(4);
+  margin: 3rem;
+}

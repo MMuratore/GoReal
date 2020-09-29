@@ -1,17 +1,17 @@
 <div class="grid-container">
   <h1 class="mat-h1">Play</h1>
-  <mat-grid-list cols="{{ ( cardLayout | async )?.columns }}" rowHeight="235px">
+  <mat-grid-list cols="{{ ( cardLayout | async )?.columns }}" rowHeight="235px" gutterSize="10px">
     <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard.cols"
       [rowspan]="( cardLayout | async )?.miniCard.rows">
-      <play-mini-card [icon]="'timelapse'" [value]="'36h'" [description]="'Game Time'"></play-mini-card>
+      <profile-mini-card [icon]="'timelapse'" [value]="'36h'" [description]="'Game Time'"></profile-mini-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard.cols"
       [rowspan]="( cardLayout | async )?.miniCard.rows">
-      <play-mini-card [icon]="'stars'" [value]="'55%'" [description]="'Victory Ratio'"></play-mini-card>
+      <profile-mini-card [icon]="'stars'" [value]="'55%'" [description]="'Victory Ratio'"></profile-mini-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard.cols"
       [rowspan]="( cardLayout | async )?.miniCard.rows">
-      <play-mini-card [icon]="'videogame_asset'" [value]="'487'" [description]="'Game Number'"></play-mini-card>
+      <profile-mini-card [icon]="'videogame_asset'" [value]="'487'" [description]="'Game Number'"></profile-mini-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.card.cols"
       [rowspan]="( cardLayout | async )?.card.rows">
@@ -19,11 +19,11 @@
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.table.cols" 
       [rowspan]="( cardLayout | async )?.table.rows">
-        <play-table></play-table>
+      <profile-table></profile-table>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.maxCard.cols"
       [rowspan]="( cardLayout | async )?.maxCard.rows">
-      <router-outlet></router-outlet>
+        <router-outlet></router-outlet>
     </mat-grid-tile>
   </mat-grid-list>
  </div>

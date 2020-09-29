@@ -14,7 +14,6 @@ import { NotAllowedComponent } from './components/notAllowed/notAllowed.componen
 import { ConfirmBoxComponent } from './components/confirm-box/confirm-box.component';
 import { SidenavItemComponent } from './components/sidenav-item/sidenav-item.component';
 import { ToolbarItemComponent } from './components/toolbar-item/toolbar-item.component';
-import { TestComponent } from './test/test.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -32,8 +31,7 @@ import { MatListModule } from '@angular/material/list';
     NotAllowedComponent,
     ConfirmBoxComponent,
     SidenavItemComponent,
-    ToolbarItemComponent,
-    TestComponent
+    ToolbarItemComponent
   ],
   imports: [
     BrowserModule,
