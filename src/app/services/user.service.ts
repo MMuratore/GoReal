@@ -17,7 +17,7 @@ export class UserService {
   ){ }
 
   getAll() {
-    return this.http.get<User[]>(`${environment.apiUrl}/user`, this.httpOptions(this.authService.userValue.token));
+    return this.http.get<User[]>(`${environment.apiUrl}/admin/user`, this.httpOptions(this.authService.userValue.token));
   }
 
   update(id : number, user: User) {
@@ -31,8 +31,26 @@ export class UserService {
       }));
     }
 
-  patch(id : number, action: string ) {
-    return this.http.patch(`${environment.apiUrl}/user/${id}`, {Action: action}, this.httpOptions(this.authService.userValue.token))
+  deactivate(id : number ) {
+    return this.http.delete(`${environment.apiUrl}/user/${id}`, this.httpOptions(this.authService.userValue.token))
+      .pipe(map(data => {
+        if (id == this.authService.userValue.userId) {
+          this.authService.logout();
+        }
+        return data;
+      }));
+  }
+  
+
+  activate(id : number) {
+    return this.http.patch(`${environment.apiUrl}/admin/user/activate/${id}`, {}, this.httpOptions(this.authService.userValue.token))
+      .pipe(map(data => {
+        return data;
+      }));
+  }
+
+  ban(id : number) {
+    return this.http.patch(`${environment.apiUrl}/admin/user/ban/${id}`, {}, this.httpOptions(this.authService.userValue.token))
       .pipe(map(data => {
         if (id == this.authService.userValue.userId) {
             this.authService.logout();
@@ -42,7 +60,7 @@ export class UserService {
   }
 
   delete(id : number ) {
-    return this.http.delete(`${environment.apiUrl}/user/${id}`, this.httpOptions(this.authService.userValue.token))
+    return this.http.delete(`${environment.apiUrl}/admin/user/${id}`, this.httpOptions(this.authService.userValue.token))
       .pipe(map(data => {
         if (id == this.authService.userValue.userId) {
           this.authService.logout();
