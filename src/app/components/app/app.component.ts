@@ -60,4 +60,14 @@ export class AppComponent implements OnInit {
       this.sidenav.close()
   }
 
+  public hasRoles(roles: Role): boolean {
+    if(!(roles == Role.None)) {
+      if(roles === (this.user.roles & roles))
+        return true;
+      else
+        return false;
+    }
+    return true;
+  }
+
 }

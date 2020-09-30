@@ -28,9 +28,9 @@
       <a [routerLink]="['/home']">GoReal</a>
       <span class="spacer"></span>
       <ng-container *ngIf="user as User; else ifAnonym">
-          <app-toolbar-item [user]="user" [roles]="user.roles" [icon]="'admin_panel_settings'" [link]="'administrator'"></app-toolbar-item>
-          <app-toolbar-item [user]="user" [roles]="user.roles" [icon]="'person_pin'" [link]="'profile'"></app-toolbar-item>
-          <app-toolbar-item [user]="user" [roles]="user.roles" [icon]="'logout'" (click)="logout()"></app-toolbar-item>
+          <app-toolbar-item *ngIf="hasRoles(Role.SuperAdministrator)" [icon]="'admin_panel_settings'" [link]="'administrator'"></app-toolbar-item>
+          <app-toolbar-item [icon]="'person_pin'" [link]="'profile'"></app-toolbar-item>
+          <app-toolbar-item [icon]="'logout'" (click)="logout()"></app-toolbar-item>
       </ng-container>
       <ng-template #ifAnonym>
           <app-toolbar-item [icon]="'login'" [link]="'login'"></app-toolbar-item>
