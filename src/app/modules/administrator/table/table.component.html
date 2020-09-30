@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>State User List</mat-card-title>
+    <mat-card-title>User Status</mat-card-title>
     <mat-form-field>
       <mat-label>Filter</mat-label>
       <input matInput placeholder="Ex. Mia" #input>
@@ -10,29 +10,40 @@
     <table mat-table class="full-width-table" matSort aria-label="Elements">
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>id</th>
-        <td mat-cell *matCellDef="let row">{{row.id | date}}</td>
+        <td mat-cell *matCellDef="let row">{{row.userId}}</td>
       </ng-container>
         <ng-container matColumnDef="goTag">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>goTag</th>
         <td mat-cell *matCellDef="let row">{{row.goTag}}</td>
       </ng-container>
       <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>email</th>
+        <th mat-header-cell *matHeaderCellDef>email</th>
         <td mat-cell *matCellDef="let row">{{row.email}}</td>
       </ng-container>
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef></th>
+      <ng-container matColumnDef="active">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>active</th>
         <td mat-cell *matCellDef="let row">
-          <button mat-icon-button color="primary" type="button" routerLink="gameInfos/{{row.Id}}">
+          <button mat-icon-button color="primary" type="button" (click)="activate(row.userId)" [disabled]="row.isActive || row.isRequesting">
             <mat-icon>restore_from_trash</mat-icon>
           </button>
-          <button mat-icon-button color="primary" type="button" routerLink="gameInfos/{{row.Id}}">
-            <mat-icon>pause</mat-icon>
-          </button>
-          <button mat-icon-button color="primary" type="button" routerLink="gameInfos/{{row.Id}}">
+          </td>
+      </ng-container>
+      <ng-container matColumnDef="ban">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ban</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button color="primary" type="button" (click)="ban(row.userId)" [disabled]="!row.isBan || row.isRequesting">
             <mat-icon>play_arrow</mat-icon>
           </button>
-          <button mat-icon-button color="primary" type="button" routerLink="gameInfos/{{row.Id}}">
+          <button mat-icon-button color="accent" type="button" (click)="ban(row.userId)" [disabled]="row.isBan || row.isRequesting">
+            <mat-icon>pause</mat-icon>
+          </button>
+          </td>
+      </ng-container>
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>
+          <span class="float-right">delete</span></th>
+        <td mat-cell *matCellDef="let row">
+          <button class="float-right" mat-icon-button color="warn" type="button" (click)="delete(row.userId)" [disabled]="row.isRequesting">
             <mat-icon>delete_forever</mat-icon>
           </button>
           </td>

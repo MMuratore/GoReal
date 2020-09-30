@@ -8,7 +8,7 @@
         <h3 class="value-text">{{user.firstName}} {{user.lastName}}</h3>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-stroked-button color="accent" type="button" routerLink="update/{{user.userId}}">UPDATE</button> 
+      <button mat-stroked-button type="button" routerLink="update/{{user.userId}}">UPDATE</button> 
       <button mat-stroked-button color="warn" type="button" (click)="delete(user.userId)" [disabled]="isConnecting">DEACTIVATE</button> 
     </mat-card-actions>
 </mat-card>

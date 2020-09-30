@@ -3,46 +3,20 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
+import { User } from 'src/app/models/user.model';
 
-// TODO: Replace this with your own data model type
-export interface TableItem {
-  id: number;
-  goTag: string;
-  email: string;
-}
 
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: TableItem[] = [
-  {id: 1, goTag: 'Hydrogen', email: 'Hydroge@Solary.com'},
-  {id: 2, goTag: 'Hydrogen', email: 'Hydroge@Solary.com'},
-  {id: 3, goTag: 'Hydrogen', email: 'Hydroge@Solary.com'},
-  {id: 4, goTag: 'Hydrogen', email: 'Hydroge@Solary.com'},
-  {id: 5, goTag: 'Hydrogen', email: 'Hydroge@Solary.com'},
-  {id: 6, goTag: 'Hydrogen', email: 'Hydroge@Solary.com'},
-];
-
-/**
- * Data source for the Table view. This class should
- * encapsulate all logic for fetching and manipulating the displayed data
- * (including sorting, pagination, and filtering).
- */
-export class TableDataSource extends DataSource<TableItem> {
-  data: TableItem[] = EXAMPLE_DATA;
+export class TableDataSource extends DataSource<User> {
+  data: User[] = [];
   paginator: MatPaginator;
   sort: MatSort;
 
-  constructor() {
+  constructor(data: User[]) {
     super();
+    this.data = data;
   }
 
-  /**
-   * Connect this data source to the table. The table will only update when
-   * the returned stream emits new items.
-   * @returns A stream of the items to be rendered.
-   */
-  connect(): Observable<TableItem[]> {
-    // Combine everything that affects the rendered data into one update
-    // stream for the data-table to consume.
+  connect(): Observable<User[]> {
     const dataMutations = [
       observableOf(this.data),
       this.paginator.page,
@@ -54,26 +28,14 @@ export class TableDataSource extends DataSource<TableItem> {
     }));
   }
 
-  /**
-   *  Called when the table is being destroyed. Use this function, to clean up
-   * any open connections or free any held resources that were set up during connect.
-   */
   disconnect() {}
 
-  /**
-   * Paginate the data (client-side). If you're using server-side pagination,
-   * this would be replaced by requesting the appropriate data from the server.
-   */
-  private getPagedData(data: TableItem[]) {
+  private getPagedData(data: User[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
 
-  /**
-   * Sort the data (client-side). If you're using server-side sorting,
-   * this would be replaced by requesting the appropriate data from the server.
-   */
-  private getSortedData(data: TableItem[]) {
+  private getSortedData(data: User[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -81,15 +43,17 @@ export class TableDataSource extends DataSource<TableItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'id': return compare(a.id, b.id, isAsc);
+        case 'id': return compare(a.userId, b.userId, isAsc);
         case 'goTag': return compare(a.goTag, b.goTag, isAsc);
+        case 'active': return compare(a.isActive, b.isActive, isAsc); 
+        case 'ban': return compare(a.isBan, b.isBan, isAsc); 
         default: return 0;
       }
     });
   }
 }
 
-/** Simple sort comparator for example ID/Name columns (for client-side sorting). */
-function compare(a: string | number, b: string | number, isAsc: boolean) {
+function compare(a: string | number | boolean, b: string | number| boolean, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
+
