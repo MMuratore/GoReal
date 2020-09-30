@@ -1,4 +1,6 @@
-
-<button type="button" mat-icon-button *ngIf="hasRoles(roles)" [routerLink]="[link]" (click)="click">
+<button type="button" mat-icon-button *ngIf="hasRoles(roles) && link" [routerLink]="[link]" (click)="click">
+  <mat-icon>{{icon}}</mat-icon>
+</button>
+<button type="button" mat-icon-button *ngIf="hasRoles(roles) && !link" (click)="click">
   <mat-icon>{{icon}}</mat-icon>
 </button>

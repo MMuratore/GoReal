@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
@@ -28,7 +28,7 @@ export class LayoutComponent {
         table: { cols: 4, rows: 2 },
         maxCard: { cols: 6, rows: 2 },
       };
-    })
+    }),shareReplay()
   );
 
   constructor(private breakpointObserver: BreakpointObserver) {}

@@ -17,29 +17,21 @@ export class AppComponent implements OnInit {
   Role = Role;
   user: User = null;
   multiLink = [
-    {icon: 'hdr_strong', title: 'Play', link: 'play', click: this.close},
-    {icon: 'emoji_events', title: 'Tournament', link: 'tournament', click: this.close},
-    {icon: 'format_list_numbered', title: 'Leaderboards', link: 'leaderboards', click: this.close}
+    {icon: 'hdr_strong', title: 'Play', link: 'play'},
+    {icon: 'emoji_events', title: 'Tournament', link: 'tournament'},
+    {icon: 'format_list_numbered', title: 'Leaderboards', link: 'leaderboards'}
   ];
   soloLink = [
-    {icon: 'school', title: 'Learn', link: 'learn', click: this.close},
-    {icon: 'account_tree', title: 'Joseki', link: 'joseki', click: this.close},
-    {icon: 'widgets', title: 'Demo', link: 'demo', click: this.close},
+    {icon: 'school', title: 'Learn', link: 'learn'},
+    {icon: 'account_tree', title: 'Joseki', link: 'joseki'},
+    {icon: 'widgets', title: 'Demo', link: 'demo'},
   ];
   userLink = [
-    {icon: 'person', title: 'Profile', link: 'profile', click: this.close},
-    {icon: 'settings', title: 'Settings', link: 'settings', click: this.close},
-    {icon: 'info', title: 'About', link: 'about', click: this.close}
+    {icon: 'person', title: 'Profile', link: 'profile'},
+    {icon: 'settings', title: 'Settings', link: 'settings'},
+    {icon: 'info', title: 'About', link: 'about'}
   ];
-  connectedToolbarLink = [
-    {icon: 'admin_panel_settings', link: 'administrator', roles: Role.SuperAdministrator},
-    {icon: 'person_pin', link: 'profile', roles: Role.None},
-    {icon: 'logout', click: this.logout, roles: Role.None}
-  ];
-  disconnectedToolbarLink = [
-    {icon: 'login', link: 'login'}
-  ];
-
+  
   @ViewChild('drawer') sidenav: MatSidenav;
 
   private isHandset: boolean;

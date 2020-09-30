@@ -8,15 +8,15 @@
       <app-sidenav-item [icon]="'home'" [title]="'Home'" [link]="'home'" (click)="close()"></app-sidenav-item>
       <mat-divider></mat-divider>
       <ng-container *ngFor="let link of multiLink">
-        <app-sidenav-item [icon]="link.icon" [title]="link.title" [link]="link.link" (click)="link.click()"></app-sidenav-item>
+        <app-sidenav-item [icon]="link.icon" [title]="link.title" [link]="link.link" (click)="close()"></app-sidenav-item>
       </ng-container>
       <mat-divider></mat-divider>
       <ng-container *ngFor="let link of soloLink">
-        <app-sidenav-item [icon]="link.icon" [title]="link.title" [link]="link.link" (click)="link.click()"></app-sidenav-item>
+        <app-sidenav-item [icon]="link.icon" [title]="link.title" [link]="link.link" (click)="close()"></app-sidenav-item>
       </ng-container>
       <mat-divider></mat-divider>
       <ng-container *ngFor="let link of userLink">
-        <app-sidenav-item [icon]="link.icon" [title]="link.title" [link]="link.link" (click)="link.click()"></app-sidenav-item>
+        <app-sidenav-item [icon]="link.icon" [title]="link.title" [link]="link.link" (click)="close()"></app-sidenav-item>
       </ng-container>
     </mat-action-list>
   </mat-sidenav>
@@ -28,14 +28,12 @@
       <a [routerLink]="['/home']">GoReal</a>
       <span class="spacer"></span>
       <ng-container *ngIf="user as User; else ifAnonym">
-        <ng-container *ngFor="let link of connectedToolbarLink">
-          <app-toolbar-item [user]="user" [roles]="link.roles" [icon]="link.icon" [link]="link.link" (click)="link.click()"></app-toolbar-item>
-        </ng-container>
+          <app-toolbar-item [user]="user" [roles]="user.roles" [icon]="'admin_panel_settings'" [link]="'administrator'"></app-toolbar-item>
+          <app-toolbar-item [user]="user" [roles]="user.roles" [icon]="'person_pin'" [link]="'profile'"></app-toolbar-item>
+          <app-toolbar-item [user]="user" [roles]="user.roles" [icon]="'logout'" (click)="logout()"></app-toolbar-item>
       </ng-container>
       <ng-template #ifAnonym>
-        <ng-container *ngFor="let link of disconnectedToolbarLink">
-          <app-toolbar-item [icon]="link.icon" [link]="link.link"></app-toolbar-item>
-        </ng-container>
+          <app-toolbar-item [icon]="'login'" [link]="'login'"></app-toolbar-item>
       </ng-template>
     </mat-toolbar>
     <section class="main">
