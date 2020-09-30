@@ -38,7 +38,7 @@ export class UserInfosComponent implements OnInit {
     dialogRef.afterClosed().subscribe(confirm => {
       if(confirm) {
         this.isConnecting = true;
-        this.userService.delete(id)
+        this.userService.deactivate(id)
           .pipe(first())
           .subscribe(() => {
             this.authService.logout();

@@ -49,7 +49,6 @@ export class UserUpdateComponent implements OnInit {
   get f() { return this.form.controls; }
 
   onSubmit() {
-
     if (this.form.invalid) {
         return;
     }

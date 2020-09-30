@@ -3,8 +3,9 @@
     <div mat-card-avatar><mat-icon class="icon">upgrade</mat-icon> </div>
     <mat-card-title>Update</mat-card-title>
   </mat-card-header>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
   <mat-card-content>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="col">
         <mat-form-field class="full-width" appearance="outline">
@@ -67,9 +68,11 @@
         </mat-form-field>
       </div>
     </div>
-  </form>
   </mat-card-content>
   <mat-card-actions>
     <button mat-stroked-button color="accent" type="submit" [disabled]="form.invalid || isConnecting">CONFIRM</button> 
   </mat-card-actions>
+</form>
+
+
 </mat-card>
