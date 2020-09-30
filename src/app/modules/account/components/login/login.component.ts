@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import { first } from 'rxjs/operators';
 import { UserError } from '../../../../models/userError.enum';
 import { AuthService } from '../../../../services/auth.service';
@@ -15,7 +16,6 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   returnUrl: string;
   hidePassword: boolean = true;
-  isConnecting: boolean = false;
   
   constructor(
     private snackbar: MatSnackBar,
@@ -36,11 +36,21 @@ export class LoginComponent implements OnInit {
 
   get f() { return this.form.controls; }
 
-  onSubmit() {
+  btnOpts: MatProgressButtonOptions = {
+    active: false,
+    text: 'LOGIN',
+    spinnerSize: 19,
+    stroked: true,
+    fullWidth: false,
+    disabled: true,
+    mode: 'indeterminate'
+  };
+  
+  onLogin() {
     if (this.form.invalid) {
         return;
     }
-    this.isConnecting = true;
+    this.btnOpts.active = true;
 
     this.authService.login(this.f.email.value, this.f.password.value)
         .pipe(first())
@@ -49,7 +59,7 @@ export class LoginComponent implements OnInit {
                 this.router.navigate([this.returnUrl]);
             },
             error => {
-              this.isConnecting = false;
+              this.btnOpts.active = false;
               this.getServerErrorMessage(error);
             });
   }

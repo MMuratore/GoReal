@@ -18,6 +18,9 @@ import {MatTableModule} from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
+import { MatProgressButtonsModule  } from 'mat-progress-buttons';
+
+
 @NgModule({
   declarations: [],
   imports: [
@@ -37,7 +40,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatDialogModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatProgressButtonsModule 
   ],
   exports: [
     LayoutModule,
@@ -56,7 +60,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatDialogModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatProgressButtonsModule 
   ]
 })
 export class SharedModule { }
