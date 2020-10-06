@@ -9,6 +9,7 @@ import { UserUpdateComponent } from './components/user-update/user-update.compon
 import { GameInfosComponent } from './components/game-infos/game-infos.component';
 import { MiniCardComponent } from './components/mini-card/mini-card.component';
 import { TableComponent } from './components/table/table.component';
+import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 
 
 
@@ -19,7 +20,8 @@ import { TableComponent } from './components/table/table.component';
     UserUpdateComponent, 
     GameInfosComponent,
     TableComponent,
-    MiniCardComponent
+    MiniCardComponent,
+    UpdatePasswordComponent
   ],
   imports: [
     CommonModule,

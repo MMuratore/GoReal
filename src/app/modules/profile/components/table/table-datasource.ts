@@ -3,49 +3,20 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
+import { Game } from 'src/app/models/game.model';
 
-// TODO: Replace this with your own data model type
-export interface TableItem {
-  Id: number;
-  Date: Date;
-  Opponent: string;
-  Result: string;
-}
 
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: TableItem[] = [
-  {Id: 1, Date: new Date(2020,12,1), Opponent: 'Hydrogen', Result: 'B+5'},
-  {Id: 2, Date: new Date(2020,12,1), Opponent: 'Hydrogen', Result: 'B+5'},
-  {Id: 3, Date: new Date(2020,12,1), Opponent: 'Hydrogen', Result: 'B+5'},
-  {Id: 4, Date: new Date(2020,12,1), Opponent: 'Hydrogen', Result: 'B+5'},
-  {Id: 5, Date: new Date(2020,12,1), Opponent: 'Hydrogen', Result: 'B+5'},
-  {Id: 6, Date: new Date(2020,12,1), Opponent: 'Hydrogen', Result: 'B+5'},
-  {Id: 7, Date: new Date(2020,12,1), Opponent: 'Hydrogen', Result: 'B+5'},
-  {Id: 8, Date: new Date(2020,12,1), Opponent: 'Hydrogen', Result: 'B+5'},
-];
-
-/**
- * Data source for the Table view. This class should
- * encapsulate all logic for fetching and manipulating the displayed data
- * (including sorting, pagination, and filtering).
- */
-export class TableDataSource extends DataSource<TableItem> {
-  data: TableItem[] = EXAMPLE_DATA;
+export class TableDataSource extends DataSource<Game> {
+  data: Game[] = [];
   paginator: MatPaginator;
   sort: MatSort;
 
-  constructor() {
+  constructor(data: Game[]) {
     super();
+    this.data = data;
   }
 
-  /**
-   * Connect this data source to the table. The table will only update when
-   * the returned stream emits new items.
-   * @returns A stream of the items to be rendered.
-   */
-  connect(): Observable<TableItem[]> {
-    // Combine everything that affects the rendered data into one update
-    // stream for the data-table to consume.
+  connect(): Observable<Game[]> {
     const dataMutations = [
       observableOf(this.data),
       this.paginator.page,
@@ -57,26 +28,14 @@ export class TableDataSource extends DataSource<TableItem> {
     }));
   }
 
-  /**
-   *  Called when the table is being destroyed. Use this function, to clean up
-   * any open connections or free any held resources that were set up during connect.
-   */
   disconnect() {}
 
-  /**
-   * Paginate the data (client-side). If you're using server-side pagination,
-   * this would be replaced by requesting the appropriate data from the server.
-   */
-  private getPagedData(data: TableItem[]) {
+  private getPagedData(data: Game[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
 
-  /**
-   * Sort the data (client-side). If you're using server-side sorting,
-   * this would be replaced by requesting the appropriate data from the server.
-   */
-  private getSortedData(data: TableItem[]) {
+  private getSortedData(data: Game[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -84,7 +43,6 @@ export class TableDataSource extends DataSource<TableItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'Opponent': return compare(a.Opponent, b.Opponent, isAsc);
         case 'Result': return compare(a.Result, b.Result, isAsc);
         default: return 0;
       }
@@ -92,7 +50,6 @@ export class TableDataSource extends DataSource<TableItem> {
   }
 }
 
-/** Simple sort comparator for example ID/Name columns (for client-side sorting). */
 function compare(a: string | number, b: string | number, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

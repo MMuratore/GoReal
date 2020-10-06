@@ -4,21 +4,21 @@ import { TimeControl } from './TimeControl.model';
 import { User } from './user.model';
 
 export class Game {
-    Id : number;
-    Date : Date;
-    BlackRank : number;
-    WhiteRank : number;
-    Result? : string;
-    Size : number;
-    Komi : number;
-    Handicap: number;
-    BlackCapture: number;
-    WhiteCapture: number;
-    BlackState?: boolean;
-    WhiteState?: boolean;
-    KoInfo: Stone;
-    TimeControl: TimeControl;
-    Rule: Rule;
-    BlackPlayer: User;
-    WhitePlayer: User;
+    id : number;
+    date : Date;
+    blackRank : number;
+    whiteRank : number;
+    result? : string;
+    size : number;
+    komi : number;
+    handicap: number;
+    blackCapture: number;
+    whiteCapture: number;
+    blackState?: boolean;
+    whiteState?: boolean;
+    koInfo: Stone;
+    timeControl: TimeControl;
+    rule: Rule;
+    blackPlayer: User;
+    whitePlayer: User;
 }

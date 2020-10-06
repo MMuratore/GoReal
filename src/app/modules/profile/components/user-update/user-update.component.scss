@@ -9,19 +9,11 @@ mat-card-header{
   margin-bottom: 1rem;
 }
 
-label{
-  font-size: 1rem;
-}
-
 .icon {
-  margin-left: 1rem;
+  margin-left: .8rem;
   transform: scale(1.8);
 }
 
-button.mat-icon-button{
-  height: 100px;
-
-}
 .full-width {
   width: 100%;
 }
@@ -29,13 +21,10 @@ button.mat-icon-button{
 .row {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .col {
   flex: 1;
   margin-right: 20px;
-}
-
-.col:last-child {
-  margin-right: 0;
 }

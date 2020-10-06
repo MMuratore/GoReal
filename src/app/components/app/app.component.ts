@@ -17,9 +17,10 @@ export class AppComponent implements OnInit {
   Role = Role;
   user: User = null;
   multiLink = [
-    {icon: 'hdr_strong', title: 'Play', link: 'play'},
+    {icon: 'hdr_strong', title: 'Play', link: 'play', action: this.close.bind(this)},
     {icon: 'emoji_events', title: 'Tournament', link: 'tournament'},
     {icon: 'format_list_numbered', title: 'Leaderboards', link: 'leaderboards'}
+
   ];
   soloLink = [
     {icon: 'school', title: 'Learn', link: 'learn'},

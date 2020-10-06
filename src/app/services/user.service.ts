@@ -17,11 +17,11 @@ export class UserService {
   ){ }
 
   getAll() {
-    return this.http.get<User[]>(`${environment.apiUrl}/admin/user`, this.httpOptions(this.authService.userValue.token));
+    return this.http.get<User[]>(`${environment.apiUrl}/admin/user`);
   }
 
   update(id : number, user: User) {
-    return this.http.put<User>(`${environment.apiUrl}/user/${id}`, user, this.httpOptions(this.authService.userValue.token))
+    return this.http.put<User>(`${environment.apiUrl}/user/${id}`, user)
       .pipe(map(data => {
         if (id == this.authService.userValue.userId) {
             localStorage.setItem('user', JSON.stringify(data));
@@ -31,8 +31,16 @@ export class UserService {
       }));
     }
 
+  updatePassword(id : number, password: string) {
+
+    return this.http.patch<User>(`${environment.apiUrl}/user/${id}`, {password: password})
+      .pipe(map(data => {
+        return data;
+      }));
+    }
+
   deactivate(id : number ) {
-    return this.http.delete(`${environment.apiUrl}/user/${id}`, this.httpOptions(this.authService.userValue.token))
+    return this.http.delete(`${environment.apiUrl}/user/${id}`)
       .pipe(map(data => {
         if (id == this.authService.userValue.userId) {
           this.authService.logout();
@@ -43,14 +51,14 @@ export class UserService {
   
 
   activate(id : number) {
-    return this.http.patch(`${environment.apiUrl}/admin/user/activate/${id}`, {}, this.httpOptions(this.authService.userValue.token))
+    return this.http.patch(`${environment.apiUrl}/admin/user/activate/${id}`, {})
       .pipe(map(data => {
         return data;
       }));
   }
 
   ban(id : number) {
-    return this.http.patch(`${environment.apiUrl}/admin/user/ban/${id}`, {}, this.httpOptions(this.authService.userValue.token))
+    return this.http.patch(`${environment.apiUrl}/admin/user/ban/${id}`, {})
       .pipe(map(data => {
         if (id == this.authService.userValue.userId) {
             this.authService.logout();
@@ -60,22 +68,13 @@ export class UserService {
   }
 
   delete(id : number ) {
-    return this.http.delete(`${environment.apiUrl}/admin/user/${id}`, this.httpOptions(this.authService.userValue.token))
+    return this.http.delete(`${environment.apiUrl}/admin/user/${id}`)
       .pipe(map(data => {
         if (id == this.authService.userValue.userId) {
           this.authService.logout();
         }
         return data;
       }));
-  }
-
-  private httpOptions(token: string) {
-    let options = {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + token
-      })
-    };
-    return options;
   }
 }
 

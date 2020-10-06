@@ -7,14 +7,8 @@ import { UserUpdateComponent } from './components/user-update/user-update.compon
 
 
 const routes: Routes = [{ path: '', component: LayoutComponent, children: [
-  {
-    path: 'update/:id',
-    component: UserUpdateComponent, 
-  },
-  {
-    path: 'gameInfos/:id',
-    component: GameInfosComponent, 
-  },
+  { path: '', component: UserUpdateComponent },
+  { path: 'gameInfos/:id', component: GameInfosComponent },
 ] }];
 
 @NgModule({

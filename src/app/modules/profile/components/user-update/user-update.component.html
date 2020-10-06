@@ -3,76 +3,44 @@
     <div mat-card-avatar><mat-icon class="icon">upgrade</mat-icon> </div>
     <mat-card-title>Update</mat-card-title>
   </mat-card-header>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
-  <mat-card-content>
-    <div class="row">
-      <div class="col">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>GoTag</mat-label>
-          <input matInput maxlength="50" [formControl]="f.goTag" required>
-          <mat-hint align="end">{{f.goTag.value?.length || 0}}/50</mat-hint>
-          <mat-error *ngIf="f.goTag.invalid">{{getErrorMessageGoTag()}}</mat-error>
-        </mat-form-field>
+    <mat-card-content [formGroup]="userForm" (ngSubmit)="onUpdate()">
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>GoTag</mat-label>
+            <input matInput maxlength="50" [formControl]="f.goTag" required>
+            <mat-hint align="end">{{f.goTag.value?.length || 0}}/50</mat-hint>
+            <mat-error *ngIf="f.goTag.invalid">{{getErrorMessageGoTag()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput disabled value={{f.email.value}}>
+          </mat-form-field>
+        </div>
       </div>
-      <div class="col">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Email</mat-label>
-          <input matInput disabled value={{f.email.value}}>
-        </mat-form-field>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>LastName</mat-label>
+            <input matInput maxlength="50" [formControl]="f.lastName">
+            <mat-hint align="end">{{f.lastName.value?.length || 0}}/50</mat-hint>
+            <mat-error *ngIf="f.lastName.invalid">{{getErrorMessageLastName()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>FirstName</mat-label>
+            <input matInput maxlength="50" [formControl]="f.firstName">
+            <mat-hint align="end">{{f.firstName.value?.length || 0}}/50</mat-hint>
+            <mat-error *ngIf="f.firstName.invalid">{{getErrorMessageFirstName()}}</mat-error>
+          </mat-form-field>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>LastName</mat-label>
-          <input matInput maxlength="50" [formControl]="f.lastName">
-          <mat-hint align="end">{{f.lastName.value?.length || 0}}/50</mat-hint>
-          <mat-error *ngIf="f.lastName.invalid">{{getErrorMessageLastName()}}</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="col">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>FirstName</mat-label>
-          <input matInput maxlength="50" [formControl]="f.firstName">
-          <mat-hint align="end">{{f.firstName.value?.length || 0}}/50</mat-hint>
-          <mat-error *ngIf="f.firstName.invalid">{{getErrorMessageFirstName()}}</mat-error>
-        </mat-form-field>
-      </div>
-    </div>
-    <label>Change Password:</label> 
-    <div class="row">
-      <div class="col">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Password</mat-label>
-          <input matInput maxlength="20" [type]="hideOldPassword ? 'password' : 'text'" [formControl]="f.oldPassword" required>
-          <mat-icon mat-icon-button matSuffix type="button" (click)="hideOldPassword = !hideOldPassword">{{hideOldPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-          <mat-error *ngIf="f.oldPassword.invalid">{{getErrorMessageOldPassword()}}</mat-error>
-        </mat-form-field>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>New Password</mat-label>
-          <input matInput maxlength="20" [type]="hidePassword ? 'password' : 'text'" [formControl]="f.password">
-          <mat-icon mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-          <mat-error *ngIf="f.password.invalid">{{getErrorMessagePassword()}}</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="col">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Confirm</mat-label>
-          <input matInput maxlength="20" type="password" [formControl]="f.confirm">
-          <mat-error *ngIf="f.confirm.invalid">{{getErrorMessageConfirm()}}</mat-error>
-        </mat-form-field>
-      </div>
-    </div>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-stroked-button color="primary" type="submit" [disabled]="form.invalid || isConnecting">CONFIRM</button> 
-  </mat-card-actions>
-</form>
-
-
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-stroked-button type="button" (click)="onUpdate()" [disabled]="userForm.invalid || isConnecting">CONFIRM</button> 
+      <button mat-stroked-button type="button" (click)="openDialog()">CHANGE PASSWORD</button> 
+    </mat-card-actions>
 </mat-card>

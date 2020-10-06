@@ -1,5 +1,5 @@
 <div class="grid-container">
-  <h1 class="mat-h1">Play</h1>
+  <h1 class="mat-h1">Profile</h1>
   <mat-grid-list cols="{{ ( cardLayout | async )?.columns }}" rowHeight="235px" gutterSize="10px">
     <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard.cols"
       [rowspan]="( cardLayout | async )?.miniCard.rows">
@@ -21,7 +21,7 @@
       [rowspan]="( cardLayout | async )?.table.rows">
       <profile-table></profile-table>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="( cardLayout | async )?.maxCard.cols"
+    <mat-grid-tile id="router-content" [colspan]="( cardLayout | async )?.maxCard.cols"
       [rowspan]="( cardLayout | async )?.maxCard.rows">
         <router-outlet></router-outlet>
     </mat-grid-tile>
