@@ -1,6 +1,6 @@
 export class Stone {
-    Row : number;
-    Column : number;
-    Color : boolean;
-    GameId : number;
+    row : number;
+    column : number;
+    color : boolean;
+    gameId : number;
 }

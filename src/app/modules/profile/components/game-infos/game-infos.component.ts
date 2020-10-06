@@ -16,25 +16,25 @@ export class GameInfosComponent implements OnInit {
 
   ngOnInit(): void {
     this.game = new Game();
-    this.game.BlackPlayer = new User();
-    this.game.WhitePlayer = new User();
-    this.game.Rule = new Rule();
-    this.game.TimeControl = new TimeControl();
+    this.game.blackPlayer = new User();
+    this.game.whitePlayer = new User();
+    this.game.rule = new Rule();
+    this.game.timeControl = new TimeControl();
 
-    this.game.Date = new Date();
-    this.game.Result = 'B+5';
-    this.game.BlackPlayer.goTag = 'Player1';
-    this.game.WhitePlayer.goTag = 'Player2';
-    this.game.BlackRank = 1024;
-    this.game.WhiteRank = 968;
-    this.game.BlackCapture = 6;
-    this.game.WhiteCapture = 12;
-    this.game.Size = 9;
-    this.game.Komi= 5;
-    this.game.Handicap = 2;
-    this.game.Rule.RuleName = 'Japanese';
-    this.game.TimeControl.Speed = 'Normal';
-    this.game.TimeControl.OverTime = 'Byo-Yomi';
+    this.game.date = new Date();
+    this.game.result = 'B+5';
+    this.game.blackPlayer.goTag = 'Player1';
+    this.game.whitePlayer.goTag = 'Player2';
+    this.game.blackRank = 1024;
+    this.game.whiteRank = 968;
+    this.game.blackCapture = 6;
+    this.game.whiteCapture = 12;
+    this.game.size = 9;
+    this.game.komi= 5;
+    this.game.handicap = 2;
+    this.game.rule.ruleName = 'Japanese';
+    this.game.timeControl.speed = 'Normal';
+    this.game.timeControl.overTime = 'Byo-Yomi';
   }
 
 }

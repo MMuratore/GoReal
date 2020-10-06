@@ -43,7 +43,7 @@ export class TableDataSource extends DataSource<Game> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'Result': return compare(a.Result, b.Result, isAsc);
+        case 'Result': return compare(a.result, b.result, isAsc);
         default: return 0;
       }
     });

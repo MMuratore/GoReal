@@ -1,7 +1,7 @@
 export class Rule {
-    Id: number;
-    RuleName: string;
-    Overwrite: boolean;
-    Suicide: boolean;
-    Ko: boolean;
+    id: number;
+    ruleName: string;
+    overwrite: boolean;
+    suicide: boolean;
+    ko: boolean;
 }

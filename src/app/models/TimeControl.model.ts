@@ -1,10 +1,10 @@
 export class TimeControl {
-    Id : number;
-    Speed : string;
-    OverTime : string;
-    TimeLimit? : number;
-    TimePerPeriod? : number;
-    Period? : number;
-    InitialTime? : number;
+    id : number;
+    speed : string;
+    overTime : string;
+    timeLimit? : number;
+    timePerPeriod? : number;
+    period? : number;
+    initialTime? : number;
 
 }
