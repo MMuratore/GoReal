@@ -3,15 +3,15 @@
   <mat-grid-list cols="{{ ( cardLayout | async )?.columns }}" rowHeight="235px" gutterSize="10px">
     <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard.cols"
       [rowspan]="( cardLayout | async )?.miniCard.rows">
-      <profile-mini-card [icon]="'timelapse'" [value]="'36h'" [description]="'Game Time'"></profile-mini-card>
+      <profile-mini-card [icon]="'timelapse'" [value]="userStatistic.playTime | totime" [description]="'Game Time'"></profile-mini-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard.cols"
       [rowspan]="( cardLayout | async )?.miniCard.rows">
-      <profile-mini-card [icon]="'stars'" [value]="'55%'" [description]="'Victory Ratio'"></profile-mini-card>
+      <profile-mini-card [icon]="'stars'" [value]="userStatistic.victoryRatio | percent" [description]="'Victory Ratio'"></profile-mini-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard.cols"
       [rowspan]="( cardLayout | async )?.miniCard.rows">
-      <profile-mini-card [icon]="'videogame_asset'" [value]="'487'" [description]="'Game Number'"></profile-mini-card>
+      <profile-mini-card [icon]="'videogame_asset'" [value]="userStatistic.gameNumber" [description]="'Game Number'"></profile-mini-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.card.cols"
       [rowspan]="( cardLayout | async )?.card.rows">

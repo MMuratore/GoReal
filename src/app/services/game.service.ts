@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Game } from '../models/game.model';
 import { environment } from 'src/environments/environment';
-import { AuthService } from './auth.service';
 import { map } from 'rxjs/operators';
 import { Stone } from '../models/Stone.model';
 

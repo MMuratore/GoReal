@@ -11,6 +11,7 @@ import { MiniCardComponent } from './components/mini-card/mini-card.component';
 import { TableComponent } from './components/table/table.component';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 
+import { TotimePipe } from './pipes/totime.pipe';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { UpdatePasswordComponent } from './components/update-password/update-pas
     GameInfosComponent,
     TableComponent,
     MiniCardComponent,
-    UpdatePasswordComponent
+    UpdatePasswordComponent,
+    TotimePipe
   ],
   imports: [
     CommonModule,

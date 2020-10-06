@@ -5,10 +5,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { NavigationStart, Router, Event } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Game } from 'src/app/models/game.model';
-import { UserError } from 'src/app/models/userError.enum';
+import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { GameService } from 'src/app/services/game.service';
 import { TableDataSource } from './table-datasource';
@@ -29,6 +29,7 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy {
   
   currentRoute: string;
   routerSubscription: Subscription;
+  user$ : Observable<User>;
   
   constructor(
     private snackbar: MatSnackBar,
@@ -38,6 +39,7 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.user$ = this.authService.user;
     this.currentRoute = this.router.url;
     this.routerSubscription = this.router.events
           .subscribe(
@@ -56,7 +58,6 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy {
     this.gameService.getByUserId(this.authService.userValue.userId)
       .pipe(first())
       .subscribe((data) => {
-        console.log(data)
         this.dataSource = new TableDataSource(data);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
