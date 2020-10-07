@@ -1,3 +1,13 @@
 <div class="grid-container">
-  <h1 class="mat-h1">Under Construction</h1>
-</div>
+  <h1 class="mat-h1">Demo</h1>
+  <mat-grid-list cols="{{ ( cardLayout | async )?.columns }}" rowHeight="235px" gutterSize="10px">
+    <mat-grid-tile [colspan]="( cardLayout | async )?.maxCard.cols"
+      [rowspan]="( cardLayout | async )?.maxCard.rows">
+      <demo-goban></demo-goban>    
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.card.cols"
+      [rowspan]="( cardLayout | async )?.card.rows">
+      <demo-goban-action></demo-goban-action>    
+    </mat-grid-tile>
+  </mat-grid-list>
+ </div>

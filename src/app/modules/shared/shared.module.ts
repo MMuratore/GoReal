@@ -17,6 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatSelectModule} from '@angular/material/select';
 
 import { MatProgressButtonsModule  } from 'mat-progress-buttons';
 
@@ -41,7 +42,8 @@ import { MatProgressButtonsModule  } from 'mat-progress-buttons';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatProgressButtonsModule 
+    MatProgressButtonsModule,
+    MatSelectModule
   ],
   exports: [
     LayoutModule,
@@ -61,7 +63,8 @@ import { MatProgressButtonsModule  } from 'mat-progress-buttons';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatProgressButtonsModule 
+    MatProgressButtonsModule,
+    MatSelectModule
   ]
 })
 export class SharedModule { }

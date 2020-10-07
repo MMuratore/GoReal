@@ -4,10 +4,18 @@ import { DemoRoutingModule } from './demo-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { LayoutComponent } from './layout/layout.component';
+import { GobanActionComponent } from './components/goban-action/goban-action.component';
+import { GobanComponent } from './components/goban/goban.component';
+import { SelectorComponent } from './components/selector/selector.component';
 
 
 @NgModule({
-  declarations: [LayoutComponent],
+  declarations: [
+    LayoutComponent,
+    GobanActionComponent,
+    GobanComponent,
+    SelectorComponent
+  ],
   imports: [
     CommonModule,
     DemoRoutingModule,

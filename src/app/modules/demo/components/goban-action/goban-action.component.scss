@@ -1,0 +1,30 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    height: 100%;
+  }
+
+mat-card-header{
+  margin-bottom: 1rem;
+}
+
+.icon {
+  margin-left: .8rem;
+  transform: scale(1.8);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}

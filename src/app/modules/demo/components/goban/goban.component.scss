@@ -1,0 +1,19 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    height: 100%;
+}
+
+.icon {
+    margin: .5rem;
+    transform: scale(2);
+}
+
+mat-card-title{ 
+    display: flex;
+}
+
+.value-text {
+    font-size: 2rem;
+}
