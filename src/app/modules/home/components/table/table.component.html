@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>History</mat-card-title>
+    <mat-card-title>Current Game</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <ng-container *ngIf="!noGamePlayed; else ifNoGame">
@@ -15,10 +15,6 @@
               {{(user$ |async).goTag == row.blackPlayer.goTag? row.whitePlayer.goTag : row.blackPlayer.goTag}}
             </td>
         </ng-container>
-        <ng-container matColumnDef="Result">
-          <th mat-header-cell *matHeaderCellDef>Result</th>
-          <td mat-cell *matCellDef="let row">{{row.result}}</td>
-        </ng-container>
         <ng-container matColumnDef="Type">
           <th mat-header-cell *matHeaderCellDef>Type</th>
           <td mat-cell *matCellDef="let row">
@@ -31,7 +27,7 @@
         <ng-container matColumnDef="Link">
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let row">
-            <button mat-stroked-button type="button" routerLink="gameInfos/{{row.id}}" [disabled]="rowIsShow(row.id)">DETAILS</button>
+            <button mat-stroked-button type="button" routerLink="demo/goban/{{row.id}}">RESUME</button>
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

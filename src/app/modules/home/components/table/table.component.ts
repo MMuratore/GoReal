@@ -26,7 +26,7 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy {
   dataSource: TableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['Date', 'Opponent', 'Result', 'Type', 'Link'];
+  displayedColumns = ['Date', 'Opponent', 'Type', 'Link'];
   
   currentRoute: string;
   routerSubscription: Subscription;
@@ -61,7 +61,8 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy {
     this.gameService.getByUserId(this.authService.userValue.userId)
       .pipe(first())
       .subscribe((data) => {
-        this.dataSource = new TableDataSource(data);
+        let currentGame = data.filter(x => x.result == null);
+        this.dataSource = new TableDataSource(currentGame);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.table.dataSource = this.dataSource;

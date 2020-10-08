@@ -1,9 +1,49 @@
-  <h1 class="mat-h1">Home</h1>
-
-  <ng-container *ngIf="(user$ | async) as User; else ifAnonym">
-
-  </ng-container>
-  <ng-template #ifAnonym>
+<h1 class="mat-h1">Home</h1>
+<ng-container *ngIf="(user$ | async) as User; else ifAnonym">
+  <mat-grid-list cols="{{ ( cardLayout | async )?.columns }}" rowHeight="235px" gutterSize="10px">
+    <mat-grid-tile [colspan]="( cardLayout | async )?.card.cols"
+      [rowspan]="( cardLayout | async )?.card.rows">
+      <div class="home-container">
+        <h2>Welcome</h2>
+        <h2>{{(user$ | async).goTag}}</h2>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.table.cols" 
+      [rowspan]="( cardLayout | async )?.table.rows">
+      <home-table></home-table>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.card.cols"
+      [rowspan]="( cardLayout | async )?.card.rows">
+      <div class="home-container">
+        <div class="row">
+          <div class="col">
+            <button class="button" mat-raised-button color="primary" type="button" [routerLink]="['/demo']">START A DEMO</button>
+          </div>
+          <div class="col">
+            <button class="button" mat-raised-button color="primary" type="button" [routerLink]="['/play']">FIND A MATCH</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button class="button" mat-raised-button color="primary" type="button" [routerLink]="['/learn']">LEARN THE GAME</button>
+          </div>
+          <div class="col">
+            <button class="button" mat-raised-button color="primary" type="button" [routerLink]="['/joseki']">REFINE YOUR PLAY</button>
+          </div>
+        </div>
+      </div>
+    </mat-grid-tile>  
+    <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard.cols"
+      [rowspan]="( cardLayout | async )?.miniCard.rows">
+      <home-mini-card [icon]="'timelapse'" [value]="userStatistic.playTime | totime" [description]="'Game Time'"></home-mini-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard.cols"
+      [rowspan]="( cardLayout | async )?.miniCard.rows">
+      <home-mini-card [icon]="'stars'" [value]="userStatistic.victoryRatio | percent" [description]="'Victory Ratio'"></home-mini-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</ng-container>
+<ng-template #ifAnonym>
   <h2>Want to Play</h2>
   <h2>GoReal</h2>
   <div class="row">

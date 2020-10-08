@@ -23,21 +23,18 @@ export class LayoutComponent implements OnInit {
     map(({ matches }) => {
       if (matches) {
         return {
-          columns: 4,
+          columns: 2,
           miniCard: { cols: 1, rows: 1 },
-          card: { cols: 4, rows: 1 },
-          table: { cols: 4, rows: 2 },
-          maxCard: { cols: 4, rows: 2 },
-
+          card: { cols: 2, rows: 1 },
+          table: { cols: 2, rows: 2 },
         };
       }
 
       return {
-        columns: 12,
+        columns: 7,
         miniCard: { cols: 2, rows: 1 },
         card: { cols: 4, rows: 1 },
-        table: { cols: 5, rows: 2 },
-        maxCard: { cols: 7, rows: 2 },
+        table: { cols: 3, rows: 2 },
       };
     }),shareReplay()
   );
@@ -50,13 +47,16 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.user$ = this.authService.user;
-    this.statisticService.get(this.authService.userValue.userId).pipe(first())
+    if(this.authService.userValue) {
+      this.statisticService.get(this.authService.userValue.userId)
+      .pipe(first())
       .subscribe(data => {
         this.userStatistic = data;
       },
       error => {
         this.getServerErrorMessage(error);
       });
+    }
   }
 
   private getServerErrorMessage(httpError: HttpErrorResponse) {

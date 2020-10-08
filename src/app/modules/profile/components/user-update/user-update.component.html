@@ -40,7 +40,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions align="end">
-      <button mat-stroked-button type="button" (click)="onUpdate()" [disabled]="userForm.invalid || isConnecting">CONFIRM</button> 
+      <mat-spinner-button (btnClick)="onUpdate()" [disabled]="userForm.invalid" [options]="btnOpts"></mat-spinner-button>  
       <button mat-stroked-button type="button" (click)="openDialog()">CHANGE PASSWORD</button> 
     </mat-card-actions>
 </mat-card>

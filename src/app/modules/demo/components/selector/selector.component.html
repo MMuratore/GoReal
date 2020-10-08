@@ -68,7 +68,10 @@
           </div>
         </div>
       </mat-card-content> 
-    <mat-card-actions align="end">
-      <button mat-stroked-button (click)="onSubmit()" [disabled]="form.invalid || isConnecting">CREATE DEMO</button> 
+    <mat-card-actions>
+      <button mat-stroked-button (click)="onBlitz()">BLITZ</button> 
+      <button mat-stroked-button (click)="onLive()">LIVE</button> 
+      <button mat-stroked-button (click)="onFavorite()">FAVORITE</button> 
+      <mat-spinner-button class="right" (btnClick)="onSubmit()" [disabled]="form.invalid" [options]="btnOpts"></mat-spinner-button>  
     </mat-card-actions>
 </mat-card>

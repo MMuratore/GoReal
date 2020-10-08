@@ -11,7 +11,7 @@ import { TimeControl } from 'src/app/models/TimeControl.model';
 import { GameService } from 'src/app/services/game.service';
 import { Game } from 'src/app/models/game.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { User } from 'src/app/models/user.model';
+import { MatProgressButtonOptions } from 'mat-progress-buttons';
 
 @Component({
   selector: 'demo-selector',
@@ -21,7 +21,17 @@ import { User } from 'src/app/models/user.model';
 export class SelectorComponent implements OnInit {
   form: FormGroup;
 
-  isConnecting: boolean = false;
+  btnOpts: MatProgressButtonOptions = {
+    active: false,
+    text: 'CREATE DEMO',
+    spinnerSize: 19,
+    buttonColor: 'primary',
+    raised: true,    
+    fullWidth: false,
+    disabled: true,
+    mode: 'indeterminate'
+  };
+
   rules: Rule[] = [];
   timeControl: TimeControl[] = [];
   speed: string[] = [];
@@ -72,7 +82,7 @@ export class SelectorComponent implements OnInit {
   get f() { return this.form.controls; }
 
   onSubmit() {
-    this.isConnecting = true;
+    this.btnOpts.active = true;
     let newGame: Game = new Game();
     newGame.size = this.f.size.value;
     newGame.komi = parseInt(this.f.komi.value);
@@ -86,15 +96,37 @@ export class SelectorComponent implements OnInit {
     .pipe(first())
     .subscribe(
       () => {
-        this.isConnecting = false;
+        this.btnOpts.active = false;
         localStorage.setItem('game', JSON.stringify(newGame));
         this.gameService.gameSubject.next(newGame);
         this.router.navigate(['demo/goban']);
       },
       error => {
-        this.isConnecting = false;
+        this.btnOpts.active = false;
         this.getServerErrorMessage(error);
       });
+  }
+
+  onBlitz() {
+    this.f.size.setValue(9);
+    this.f.rule.setValue('Japanese');
+    this.f.handicap.setValue(0);
+    this.f.komi.setValue(5);
+    this.f.speed.setValue('Blitz');
+    this.f.overTime.setValue('Byo-Yomi');
+  }
+
+  onLive() {
+    this.f.size.setValue(9);
+    this.f.rule.setValue('Japanese');
+    this.f.handicap.setValue(0);
+    this.f.komi.setValue(5);
+    this.f.speed.setValue('Live');
+    this.f.overTime.setValue('Byo-Yomi');
+  }
+
+  onFavorite() {
+
   }
 
   getErrorMessageHandicap() {

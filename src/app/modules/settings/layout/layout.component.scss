@@ -1,21 +1,20 @@
-.grid-container {
-  margin: 20px;
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  height: 100%;
+  margin: 1%;
 }
 
-.dashboard-card {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
+h1{
+  height: 5rem;
+  font-size: 4rem;
 }
 
-.more-button {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-}
-
-.dashboard-card-content {
-  text-align: center;
+mat-icon {
+  margin: 2rem;
+  transform: scale(3);
 }

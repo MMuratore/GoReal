@@ -9,6 +9,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { AuthService } from '../../../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, Subscription } from 'rxjs';
+import { MatProgressButtonOptions } from 'mat-progress-buttons';
 
 @Component({
   selector: 'profile-user-infos',
@@ -18,9 +19,19 @@ import { Observable, Subscription } from 'rxjs';
 export class UserInfosComponent implements OnInit, OnDestroy {
 
   user$ : Observable<User>;
-  isConnecting: boolean = false;
   currentRoute: string;
   routerSubscription: Subscription;
+  
+  btnOpts: MatProgressButtonOptions = {
+    active: false,
+    text: 'DEACTIVATE',
+    spinnerSize: 19,
+    buttonColor: 'warn',
+    stroked: true,
+    fullWidth: false,
+    disabled: false,
+    mode: 'indeterminate'
+  };
 
   constructor(
     private snackbar: MatSnackBar,
@@ -30,7 +41,7 @@ export class UserInfosComponent implements OnInit, OnDestroy {
     private router: Router,
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.user$ = this.authService.user;
     this.currentRoute = this.router.url;
     this.routerSubscription = this.router.events
@@ -51,17 +62,19 @@ export class UserInfosComponent implements OnInit, OnDestroy {
     let dialogRef = this.matDialog.open(ConfirmBoxComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirm => {
       if(confirm) {
-        this.isConnecting = true;
+        this.btnOpts.active = true;
         this.userService.deactivate(this.authService.userValue.userId)
           .pipe(first())
           .subscribe(() => {
+            this.btnOpts.active = false;         
+
             this.authService.logout();
             this.router.navigate(['/login']);         
           },
           error => {
+            this.btnOpts.active = false;         
             this.getServerErrorMessage(error);
-            this.isConnecting = false;
-          });
+        });
       }
     })
   }

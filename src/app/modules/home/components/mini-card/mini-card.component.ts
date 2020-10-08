@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'profile-mini-card',
+  selector: 'home-mini-card',
   templateUrl: './mini-card.component.html',
   styleUrls: ['./mini-card.component.scss']
 })

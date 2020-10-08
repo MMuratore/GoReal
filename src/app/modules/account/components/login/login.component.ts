@@ -16,6 +16,16 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   returnUrl: string;
   hidePassword: boolean = true;
+
+  btnOpts: MatProgressButtonOptions = {
+    active: false,
+    text: 'LOGIN',
+    spinnerSize: 19,
+    stroked: true,
+    fullWidth: false,
+    disabled: true,
+    mode: 'indeterminate'
+  };
   
   constructor(
     private snackbar: MatSnackBar,
@@ -35,16 +45,6 @@ export class LoginComponent implements OnInit {
   }
 
   get f() { return this.form.controls; }
-
-  btnOpts: MatProgressButtonOptions = {
-    active: false,
-    text: 'LOGIN',
-    spinnerSize: 19,
-    stroked: true,
-    fullWidth: false,
-    disabled: true,
-    mode: 'indeterminate'
-  };
   
   onLogin() {
     if (this.form.invalid) {

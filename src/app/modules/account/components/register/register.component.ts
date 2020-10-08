@@ -8,6 +8,7 @@ import { ConfirmValidator } from '../../../../helpers/confirm.validators';
 import { AuthService } from '../../../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatProgressButtonOptions } from 'mat-progress-buttons';
 
 @Component({
   templateUrl: './register.component.html',
@@ -16,7 +17,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class RegisterComponent implements OnInit {
   form: FormGroup;
   hidePassword: boolean = true;
-  isConnecting: boolean = false;
+  
+  btnOpts: MatProgressButtonOptions = {
+    active: false,
+    text: 'REGISTER',
+    spinnerSize: 19,
+    stroked: true,
+    fullWidth: false,
+    disabled: true,
+    mode: 'indeterminate'
+  };
 
   constructor(
     private snackbar: MatSnackBar,
@@ -46,16 +56,16 @@ export class RegisterComponent implements OnInit {
   if (this.form.invalid) {
       return;
   }
-  this.isConnecting = true;
-
+  this.btnOpts.active = true;
   this.authService.register(this.form.value)
     .pipe(first())
     .subscribe(
       () => {
+        this.btnOpts.active = false;
         this.router.navigate(['../login'], { relativeTo: this.route });
       },
       error => {
-        this.isConnecting = false;
+        this.btnOpts.active = false;
         this.form.reset(this.form.value);
         this.getServerErrorMessage(error);
       });

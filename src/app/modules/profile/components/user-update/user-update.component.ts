@@ -11,6 +11,7 @@ import { UserError } from '../../../../models/userError.enum';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdatePasswordComponent } from '../update-password/update-password.component';
+import { MatProgressButtonOptions } from 'mat-progress-buttons';
 
 
 @Component({
@@ -20,8 +21,17 @@ import { UpdatePasswordComponent } from '../update-password/update-password.comp
 export class UserUpdateComponent implements OnInit {
   pwdForm: FormGroup;
   userForm: FormGroup;
-  isConnecting: boolean = false;
   currentUser: User;
+
+  btnOpts: MatProgressButtonOptions = {
+    active: false,
+    text: 'UPDATE',
+    spinnerSize: 19,
+    stroked: true,
+    fullWidth: false,
+    disabled: true,
+    mode: 'indeterminate'
+  };
 
   constructor(
     private snackbar: MatSnackBar,
@@ -54,18 +64,15 @@ export class UserUpdateComponent implements OnInit {
     this.currentUser.lastName = this.f.lastName.value;
     this.currentUser.firstName = this.f.firstName.value;
     this.currentUser.email = this.f.email.value;
-    this.isConnecting = true;
+    this.btnOpts.active = true;
     this.userService.update(this.currentUser.userId, this.currentUser)
         .pipe(first())
         .subscribe(
             () => {
-              this.isConnecting = false;
-              if(!(this.f.password.value === "")) {
-                this.authService.logout();
-              }
+              this.btnOpts.active = false;
             },
             error => {
-              this.isConnecting = false;
+              this.btnOpts.active = false;
               this.getServerErrorMessage(error)
         });
   }

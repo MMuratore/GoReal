@@ -8,12 +8,20 @@
   margin: 1%;
 }
 
+.home-container{
+  display: flex;
+  flex: 1 1 auto;
+  height: 100%;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
 mat-grid-list {
   flex: 1 1 auto;
 }
 
 .button {
-  min-width: 20rem;
   width: 80%;
   height: 3.5rem;
   margin: 1rem
@@ -28,8 +36,6 @@ h2 {
 .row {
 display: flex;
 flex-direction: row;
-flex-wrap: wrap;
-
 }
 
 .col {

@@ -12,7 +12,9 @@
         <ng-container matColumnDef="Opponent">
           <th mat-header-cell *matHeaderCellDef>Opponent</th>
             <td mat-cell *matCellDef="let row">
-              {{(user$ |async).goTag == row.blackPlayer.goTag? row.whitePlayer.goTag : row.blackPlayer.goTag}}
+              <span *ngIf="(user$ |async).userId != row.blackPlayer.userId">{{row.blackPlayer.goTag}}</span>
+              <span *ngIf="(user$ |async).userId != row.whitePlayer.userId">{{row.whitePlayer.goTag}}</span>
+              <span *ngIf="(user$ |async).userId == row.whitePlayer.userId && (user$ |async).userId == row.blackPlayer.userId">{{(user$ |async).goTag}}</span>
             </td>
         </ng-container>
         <ng-container matColumnDef="Result">

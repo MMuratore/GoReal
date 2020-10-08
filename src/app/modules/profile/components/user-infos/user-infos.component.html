@@ -9,6 +9,6 @@
     </mat-card-content>
     <mat-card-actions align="end">
       <button mat-stroked-button type="button" [disabled]="this.currentRoute == '/profile'" [routerLink]="['./']">UPDATE</button> 
-      <button mat-stroked-button color="warn" type="button" (click)="delete()" [disabled]="isConnecting">DEACTIVATE</button> 
+      <mat-spinner-button type="button" (click)="delete()" [options]="btnOpts"></mat-spinner-button>  
     </mat-card-actions>
 </mat-card>
