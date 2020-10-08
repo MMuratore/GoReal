@@ -11,7 +11,11 @@
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard.cols"
       [rowspan]="( cardLayout | async )?.miniCard.rows">
-      <profile-mini-card [icon]="'videogame_asset'" [value]="userStatistic.gameNumber" [description]="'Game Number'"></profile-mini-card>
+      <profile-mini-card [icon]="'videogame_asset'" [value]="userStatistic.gameNumber" [description]="'Match Number'"></profile-mini-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard.cols"
+      [rowspan]="( cardLayout | async )?.miniCard.rows">
+      <profile-mini-card [icon]="'grid_on'" [value]="userStatistic.trainingNumber" [description]="'Training Number'"></profile-mini-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.card.cols"
       [rowspan]="( cardLayout | async )?.card.rows">

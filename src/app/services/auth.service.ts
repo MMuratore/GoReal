@@ -37,6 +37,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('user');
+    localStorage.removeItem('game');
     this.userSubject.next(null);
     this.router.navigate(['/home']);
   }

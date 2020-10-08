@@ -9,10 +9,28 @@ mat-card-header {
   justify-content: space-between;
 }
 
+mat-card {
+  flex: 1 1 auto;
+}
+
 button{
   float: right;
 }
 
 .full-width-table {
   width: 100%;
+}
+
+.type-container {
+  display: flex;
+  align-items: center;
+}
+
+.noGame-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  margin: 1%;
 }

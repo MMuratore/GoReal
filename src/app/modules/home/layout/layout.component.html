@@ -1,0 +1,17 @@
+  <h1 class="mat-h1">Home</h1>
+
+  <ng-container *ngIf="(user$ | async) as User; else ifAnonym">
+
+  </ng-container>
+  <ng-template #ifAnonym>
+  <h2>Want to Play</h2>
+  <h2>GoReal</h2>
+  <div class="row">
+    <div class="col">
+      <button class="button" mat-raised-button color="primary" type="button" [routerLink]="['/login']">LOGIN</button>
+    </div>
+    <div class="col">
+      <button class="button" mat-raised-button color="primary" type="button" [routerLink]="['/register']">REGISTER</button>
+    </div>
+  </div>
+</ng-template>

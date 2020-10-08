@@ -21,7 +21,7 @@ export class GameInfosComponent implements OnInit {
     this.game.rule = new Rule();
     this.game.timeControl = new TimeControl();
 
-    this.game.date = new Date();
+    this.game.startDate = new Date();
     this.game.result = 'B+5';
     this.game.blackPlayer.goTag = 'Player1';
     this.game.whitePlayer.goTag = 'Player2';

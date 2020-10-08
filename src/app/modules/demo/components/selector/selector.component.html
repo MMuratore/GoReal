@@ -22,6 +22,13 @@
               <mat-error *ngIf="f.handicap.invalid">{{getErrorMessageHandicap()}}</mat-error>
             </mat-form-field>
           </div>
+          <div class="col">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Komi</mat-label>
+              <input matInput placeholder="Between 0 and 10" maxlength="2" [formControl]="f.komi" required>
+              <mat-error *ngIf="f.komi.invalid">{{getErrorMessageKomi()}}</mat-error>
+            </mat-form-field>
+          </div>
         </div>
         <div class="row">
           <div class="col">
@@ -62,6 +69,6 @@
         </div>
       </mat-card-content> 
     <mat-card-actions align="end">
-      <button mat-stroked-button type="button" [disabled]="form.invalid" [routerLink]="['./goban']">CREATE DEMO</button> 
+      <button mat-stroked-button (click)="onSubmit()" [disabled]="form.invalid || isConnecting">CREATE DEMO</button> 
     </mat-card-actions>
 </mat-card>

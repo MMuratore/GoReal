@@ -3,28 +3,34 @@
   flex-direction: column;
   flex: 1 1 auto;
   height: 100%;
-  margin: 1%;
 }
 
-mat-grid-list {
+mat-card-header {
+  justify-content: space-between;
+}
+
+mat-card {
   flex: 1 1 auto;
 }
 
-.column {
+button{
+  float: right;
+}
+
+.full-width-table {
+  width: 100%;
+}
+
+.type-container {
+  display: flex;
+  align-items: center;
+}
+
+.noGame-container {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
   align-items: center;
   justify-content: center;
   margin: 1%;
-}
-
-.button {
-  height: 3.5rem;
-  width: 80%;
-}
-
-h2 {
-  height: 5rem;
-  font-size: 4.5rem;
 }

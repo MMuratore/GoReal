@@ -3,6 +3,9 @@
         "goban",
         "joseki",
         "leaderboards",
-        "sidenav"
+        "pipe",
+        "sidenav",
+        "totime",
+        "totime pipe"
     ]
 }

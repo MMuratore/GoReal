@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { User } from '../../../../models/user.model';
-import { UserService } from '../../../../services/user.service';
-import { AuthService } from '../../../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { UserError } from '../../../../models/userError.enum';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { GameService } from 'src/app/services/game.service';
+import { Game } from 'src/app/models/game.model';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/models/user.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -16,85 +16,46 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./goban-action.component.scss']
 })
 export class GobanActionComponent implements OnInit {
-  userForm: FormGroup;
+  game$: Observable<Game>;
   isConnecting: boolean = false;
-  currentUser: User;
 
   constructor(
     private snackbar: MatSnackBar,
-    private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private userService: UserService
+    private gameService: GameService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    this.currentUser = this.authService.userValue;
-    this.authService.userSubject;
-    this.userForm = this.formBuilder.group({
-      userId: [''],
-      goTag: [this.currentUser.goTag, [Validators.required, Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9]*$/)]],
-      lastName: [this.currentUser.lastName, [Validators.maxLength(50), Validators.pattern(/^[a-zA-Z -]*$/)]],
-      firstName: [this.currentUser.firstName, [Validators.maxLength(50), Validators.pattern(/^[a-zA-Z -]*$/)]],
-      email: [this.currentUser.email]
-    });
+    this.game$ = this.gameService.game;
   }
 
-  get f() { return this.userForm.controls; }
-
-  onUpdate() {
-    if (this.userForm.invalid) {
-        return;
-    }
-    
-    this.currentUser.goTag = this.f.goTag.value;
-    this.currentUser.lastName = this.f.lastName.value;
-    this.currentUser.firstName = this.f.firstName.value;
-    this.currentUser.email = this.f.email.value;
+  onResign() {
     this.isConnecting = true;
-    this.userService.update(this.currentUser.userId, this.currentUser)
-        .pipe(first())
-        .subscribe(
-            () => {
-              this.isConnecting = false;
-              if(!(this.f.password.value === "")) {
-                this.authService.logout();
-              }
-            },
-            error => {
-              this.isConnecting = false;
-              this.getServerErrorMessage(error)
-        });
+    this.gameService.resign(this.gameService.gameSubject.value.id,this.authService.userValue.userId)
+    .pipe(first())
+    .subscribe(
+      () => {},
+      error => {
+        this.getServerErrorMessage(error);
+        this.isConnecting = false;
+      });
   }
 
-  getErrorMessageGoTag() {
-    if (this.f.goTag.hasError('required')) {
-      return 'You must enter a value';
-    }
-    if (this.f.goTag.hasError('goTagUse')) {
-      return 'GoTag already use';
-    }
-    return this.f.goTag.hasError('pattern') ? 'must only contain alphanumeric characters' : '';
-  }
-
-  getErrorMessageLastName() {
-    return this.f.lastName.hasError('pattern') ? 'must only contain text characters, white space and hyphen' : '';
-  }
-
-  getErrorMessageFirstName() {
-    return this.f.firstName.hasError('pattern') ? 'must only contain text characters, white space and hyphen' : '';
+  onPass() {
+    this.isConnecting = true;
+    this.gameService.pass(this.gameService.gameSubject.value.id,this.authService.userValue.userId)
+    .pipe(first())
+    .subscribe(
+      () => {},
+      error => {
+        this.getServerErrorMessage(error);
+        this.isConnecting = false;
+      });
   }
 
   private getServerErrorMessage(httpError: HttpErrorResponse) {
     let msg : string;
-    if(httpError.status == 400) {
-      if(httpError.error.type == UserError.GoTagNotUnique)
-        this.f.goTag.setErrors({goTagUse:true});
-    }
-    else if(httpError.status == 404) {
-      if(httpError.error.type == UserError.NotFound)
-        msg = 'invalid login or password';
-    }
-    else
+    if(httpError.status == 404) 
       msg = 'Unable to connect to server';
     if(msg)
       this.snackbar.open(msg, 'Dismiss', {

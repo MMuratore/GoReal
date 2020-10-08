@@ -5,7 +5,8 @@ import { User } from './user.model';
 
 export class Game {
     id : number;
-    date : Date;
+    startDate : Date;
+    endDate : Date;
     blackRank : number;
     whiteRank : number;
     result? : string;
@@ -21,4 +22,17 @@ export class Game {
     rule: Rule;
     blackPlayer: User;
     whitePlayer: User;
+
+    constructor() {
+        
+        this.blackCapture = 0;
+        this.whiteCapture = 0;
+        this.blackState = true;
+        this.whiteState = false;
+        this.koInfo = new Stone(-1, -1, null);
+        this.timeControl = new TimeControl();
+        this.rule = new Rule();
+        this.blackPlayer = new User();
+        this.whitePlayer = new User();
+    }
 }

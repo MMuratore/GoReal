@@ -25,7 +25,7 @@
       <button type="button" mat-icon-button (click)="drawer.toggle()" *ngIf="(isHandset$ | async) && user">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <a [routerLink]="['/home']">GoReal</a>
+      <a [routerLink]="['./home']">GoReal</a>
       <span class="spacer"></span>
       <ng-container *ngIf="user as User; else ifAnonym">
           <app-toolbar-item *ngIf="hasRoles(Role.SuperAdministrator)" [icon]="'admin_panel_settings'" [link]="'administrator'"></app-toolbar-item>

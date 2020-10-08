@@ -1,0 +1,39 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex: 1 1 auto;
+  height: 100%;
+  margin: 1%;
+}
+
+mat-grid-list {
+  flex: 1 1 auto;
+}
+
+.button {
+  min-width: 20rem;
+  width: 80%;
+  height: 3.5rem;
+  margin: 1rem
+}
+
+h2 {
+  align-self: center;
+  height: 5rem;
+  font-size: 4.5rem;
+}
+
+.row {
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+
+}
+
+.col {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}

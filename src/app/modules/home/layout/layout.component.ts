@@ -6,6 +6,8 @@ import { Statistic } from 'src/app/models/statistic.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'profile-layout',
@@ -14,6 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class LayoutComponent implements OnInit {
 
+  user$ : Observable<User>;
   userStatistic: Statistic = new Statistic();
 
   cardLayout  = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
@@ -46,6 +49,7 @@ export class LayoutComponent implements OnInit {
     private authService: AuthService) {}
 
   ngOnInit(): void {
+    this.user$ = this.authService.user;
     this.statisticService.get(this.authService.userValue.userId).pipe(first())
       .subscribe(data => {
         this.userStatistic = data;

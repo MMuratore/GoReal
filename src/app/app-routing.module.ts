@@ -1,20 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AboutComponent } from './components/about/about.component';
-import { HomeComponent } from './components/home/home.component';
+
 import { AuthGuardService } from './services/auth-guard.service';
-import { NotFoundComponent } from './components/notFound/notFound.component';
-import { NotAllowedComponent } from './components/notAllowed/notAllowed.component';
+import { AnonymousGuardService } from './services/anonymous-guard.service';
 import { Role } from './models/role.enum';
 
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent},
-  { path: 'about', component: AboutComponent},
-  { path: 'notFound', component : NotFoundComponent},
-  { path: 'notAllowed', component : NotAllowedComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: '', loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule) },
+  { path: '', canActivate : [AnonymousGuardService], loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule) },
+  { path: '', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) },
   { path: 'play', canActivate : [AuthGuardService], loadChildren: () => import('./modules/play/play.module').then(m => m.PlayModule) },
   { path: 'tournament', canActivate : [AuthGuardService], loadChildren: () => import('./modules/tournament/tournament.module').then(m => m.TournamentModule) },
   { path: 'leaderboards', canActivate : [AuthGuardService], loadChildren: () => import('./modules/leaderboards/leaderboards.module').then(m => m.LeaderboardsModule) },

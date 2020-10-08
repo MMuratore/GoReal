@@ -15,7 +15,7 @@ import { GameService } from 'src/app/services/game.service';
 import { TableDataSource } from './table-datasource';
 
 @Component({
-  selector: 'profile-table',
+  selector: 'home-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })

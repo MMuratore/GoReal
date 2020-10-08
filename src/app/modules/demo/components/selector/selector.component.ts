@@ -8,6 +8,10 @@ import { RuleService } from 'src/app/services/rule.service';
 import { TimeControlService } from 'src/app/services/timeControl.service';
 import { Rule } from 'src/app/models/Rule.model';
 import { TimeControl } from 'src/app/models/TimeControl.model';
+import { GameService } from 'src/app/services/game.service';
+import { Game } from 'src/app/models/game.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'demo-selector',
@@ -19,15 +23,18 @@ export class SelectorComponent implements OnInit {
 
   isConnecting: boolean = false;
   rules: Rule[] = [];
+  timeControl: TimeControl[] = [];
   speed: string[] = [];
   overTime: string[] = [];
-  boardSize = [9, 12, 19];
+  boardSize = [9, 13, 19];
 
   constructor(
     private snackbar: MatSnackBar,
     private formBuilder: FormBuilder,
     private ruleService: RuleService,
     private timeControlService: TimeControlService,
+    private authService: AuthService,
+    private gameService: GameService,
     private router: Router,
   ) { }
 
@@ -41,6 +48,7 @@ export class SelectorComponent implements OnInit {
       });
     this.timeControlService.get().pipe(first())
     .subscribe(data => {
+      this.timeControl = data;
       data.forEach(item => {
         this.speed.push(item.speed);
         this.overTime.push(item.overTime)
@@ -55,6 +63,7 @@ export class SelectorComponent implements OnInit {
       size: ['', [Validators.required]],
       rule: ['', [Validators.required]],
       handicap: ['', [Validators.required, Validators.min(0), Validators.max(9)]],
+      komi: ['', [Validators.required, Validators.min(0), Validators.max(10)]],
       speed: ['', [Validators.required]],
       overTime: ['', [Validators.required]]
     });
@@ -63,7 +72,29 @@ export class SelectorComponent implements OnInit {
   get f() { return this.form.controls; }
 
   onSubmit() {
-    console.log("pass")
+    this.isConnecting = true;
+    let newGame: Game = new Game();
+    newGame.size = this.f.size.value;
+    newGame.komi = parseInt(this.f.komi.value);
+    newGame.handicap = parseInt(this.f.handicap.value);
+    newGame.timeControl.id = this.timeControl.find( item => item.overTime == this.f.overTime.value && item.speed == this.f.speed.value).id;
+    newGame.rule.id = this.rules.find( item => item.ruleName == this.f.rule.value).id;
+    newGame.blackPlayer.userId = this.authService.userValue.userId;
+    newGame.whitePlayer.userId = this.authService.userValue.userId;
+
+    this.gameService.create(newGame)
+    .pipe(first())
+    .subscribe(
+      () => {
+        this.isConnecting = false;
+        localStorage.setItem('game', JSON.stringify(newGame));
+        this.gameService.gameSubject.next(newGame);
+        this.router.navigate(['demo/goban']);
+      },
+      error => {
+        this.isConnecting = false;
+        this.getServerErrorMessage(error);
+      });
   }
 
   getErrorMessageHandicap() {
@@ -74,6 +105,16 @@ export class SelectorComponent implements OnInit {
       return 'Handicap of minimum 0';
     }
     return this.f.handicap.hasError('max') ? 'Handicap of maximum 9' : '';
+  }
+
+  getErrorMessageKomi() {
+    if (this.f.komi.hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (this.f.komi.hasError('min')) {
+      return 'Komi of minimum 0';
+    }
+    return this.f.komi.hasError('max') ? 'Komi of maximum 10' : '';
   }
 
   getErrorMessageRequired(field: FormControl) {
