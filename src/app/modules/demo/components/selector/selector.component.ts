@@ -95,11 +95,11 @@ export class SelectorComponent implements OnInit {
     this.gameService.create(newGame)
     .pipe(first())
     .subscribe(
-      () => {
+      (data) => {
         this.btnOpts.active = false;
-        localStorage.setItem('game', JSON.stringify(newGame));
-        this.gameService.gameSubject.next(newGame);
-        this.router.navigate(['demo/goban']);
+        localStorage.setItem('game', JSON.stringify(data));
+        this.gameService.gameSubject.next(data);
+        this.router.navigate([`demo/goban/${data.id}`]);
       },
       error => {
         this.btnOpts.active = false;

@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 
 @Component({
-  selector: 'profile-layout',
+  selector: 'home-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })

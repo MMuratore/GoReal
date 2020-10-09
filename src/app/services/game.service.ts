@@ -36,7 +36,7 @@ export class GameService {
   }
 
   create(game: Game) {
-    return this.http.post(`${environment.apiUrl}/game`, game)
+    return this.http.post<Game>(`${environment.apiUrl}/game`, game)
   }
 
   makeMove(id : number, newStone: Stone) {
