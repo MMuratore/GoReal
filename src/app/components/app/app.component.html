@@ -21,7 +21,7 @@
     </mat-action-list>
   </mat-sidenav>
   <mat-sidenav-content class="sidenav-content">
-    <mat-toolbar color="primary">
+    <mat-toolbar>
       <button type="button" mat-icon-button (click)="drawer.toggle()" *ngIf="(isHandset$ | async) && user">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>

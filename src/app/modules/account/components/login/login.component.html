@@ -1,27 +1,23 @@
-<div class="container">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Login</mat-card-title>
-    </mat-card-header>
-      <mat-card-content>
-          <mat-form-field appearance="standard" class="full-width">
-            <mat-label>Email</mat-label>
-            <input matInput maxlength="320" type="email" [formControl]="f.email" required>
-            <mat-error *ngIf="f.email.invalid">{{getErrorMessageEmail()}}</mat-error>
-          </mat-form-field>
-          <br>
-          <mat-form-field appearance="standard">
-            <mat-label>Password</mat-label>
-            <input matInput maxlength="20" [type]="hidePassword ? 'password' : 'text'" [formControl]="f.password" required>
-            <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
-            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-            <mat-error *ngIf="f.password.invalid">{{getErrorMessagePassword()}}</mat-error>
-          </mat-form-field>
-      </mat-card-content>
-      <mat-card-actions> 
-        <mat-spinner-button (btnClick)="onLogin()" [disabled]="form.invalid" [options]="btnOpts"></mat-spinner-button>  
-        <button mat-stroked-button type="button" [routerLink]="['/register']">REGISTER</button>
-      </mat-card-actions>
-  </mat-card>
-</div>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Login</mat-card-title>
+  </mat-card-header>
+    <mat-card-content>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput maxlength="320" type="email" [formControl]="f.email" required>
+          <mat-error *ngIf="f.email.invalid">{{getErrorMessageEmail()}}</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput maxlength="20" [type]="hidePassword ? 'password' : 'text'" [formControl]="f.password" required>
+          <mat-icon mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-error *ngIf="f.password.invalid">{{getErrorMessagePassword()}}</mat-error>
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions align="end"> 
+      <mat-spinner-button (btnClick)="onLogin()" [disabled]="form.invalid" [options]="btnOpts"></mat-spinner-button>  
+      <button mat-stroked-button type="button" [routerLink]="['/register']">REGISTER</button>
+    </mat-card-actions>
+</mat-card>

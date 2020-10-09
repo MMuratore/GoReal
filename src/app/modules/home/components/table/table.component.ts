@@ -31,7 +31,7 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy {
   currentRoute: string;
   routerSubscription: Subscription;
   user$ : Observable<User>;
-  noGamePlayed: boolean = false;
+  GamePlayed: boolean = true;
 
   constructor(
     private snackbar: MatSnackBar,
@@ -41,7 +41,7 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.noGamePlayed = false;
+
     this.user$ = this.authService.user;
     this.currentRoute = this.router.url;
     this.routerSubscription = this.router.events
@@ -82,7 +82,7 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy {
     let msg : string;
     if(httpError.status == 404) {
       if(httpError.error.type == GameError.NoGamePlayed)
-        this.noGamePlayed = true;
+        this.GamePlayed = false;
     }
     else
       msg = 'Unable to connect to server';

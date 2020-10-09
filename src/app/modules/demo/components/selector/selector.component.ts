@@ -26,7 +26,7 @@ export class SelectorComponent implements OnInit {
     text: 'CREATE DEMO',
     spinnerSize: 19,
     buttonColor: 'primary',
-    raised: true,    
+    stroked: true,    
     fullWidth: false,
     disabled: true,
     mode: 'indeterminate'
