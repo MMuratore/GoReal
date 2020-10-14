@@ -1,2 +1,6 @@
-<h1 class="mat-h1">Under Construction</h1>
-<mat-icon>construction</mat-icon>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" ngNativeValidate>
+    <mat-slide-toggle formControlName="music">Music</mat-slide-toggle><br>
+    <mat-slide-toggle formControlName="effect">Effect</mat-slide-toggle><br>
+    <button mat-raised-button type="submit">Save Settings</button>
+</form>

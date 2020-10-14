@@ -6,6 +6,8 @@ import {MatSidenav} from '@angular/material/sidenav';
 import { AuthService } from '../../services/auth.service';
 import { Role } from '../../models/role.enum';
 import { User } from '../../models/user.model';
+import { Settings } from 'src/app/models/settings.model';
+import { SettingsService } from 'src/app/services/settings.service';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +16,7 @@ import { User } from '../../models/user.model';
 })
 export class AppComponent implements OnInit {
   title = 'GoReal';
+  settings$: Observable<Settings>;
   Role = Role;
   user: User = null;
   multiLink = [
@@ -44,11 +47,13 @@ export class AppComponent implements OnInit {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private authService: AuthService
+    private authService: AuthService,
+    private settingsService: SettingsService
   ) {}
 
   
   ngOnInit() {
+    this.settings$ = this.settingsService.settings;
     this.authService.user.subscribe(x => this.user = x);  
   }
 

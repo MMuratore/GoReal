@@ -16,24 +16,6 @@ export class LayoutComponent implements OnInit {
 
   userStatistic: Statistic = new Statistic;
 
-  cardLayout  = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map(({ matches }) => {
-      if (matches) {
-        return {
-          columns: 2,
-          card: { cols: 2, rows: 1 },
-          maxCard: { cols: 2, rows: 2 },
-        };
-      }
-
-      return {
-        columns: 10,
-        card: { cols: 3, rows: 2 },
-        maxCard: { cols: 7, rows: 2 },
-      };
-    }),shareReplay()
-  );
-
   constructor(
     private snackbar: MatSnackBar,
     private breakpointObserver: BreakpointObserver,

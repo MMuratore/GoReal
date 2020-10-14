@@ -2,6 +2,7 @@ import { Rule } from './Rule.model';
 import { Stone } from './Stone.model';
 import { TimeControl } from './TimeControl.model';
 import { User } from './user.model';
+import { Board } from './board.model';
 
 export class Game {
     id : number;
@@ -22,9 +23,9 @@ export class Game {
     rule: Rule;
     blackPlayer: User;
     whitePlayer: User;
+    board: Board;
 
     constructor() {
-        
         this.blackCapture = 0;
         this.whiteCapture = 0;
         this.blackState = true;

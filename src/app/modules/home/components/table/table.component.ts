@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { NavigationStart, Router, Event } from '@angular/router';
+import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import { Observable, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Game } from 'src/app/models/game.model';
@@ -33,6 +34,16 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy {
   user$ : Observable<User>;
   GamePlayed: boolean = true;
 
+  btnOpts: MatProgressButtonOptions = {
+    active: false,
+    text: 'RESUME',
+    spinnerSize: 19,
+    stroked: true,
+    fullWidth: false,
+    disabled: false,
+    mode: 'indeterminate'
+  };
+  
   constructor(
     private snackbar: MatSnackBar,
     private router: Router,
@@ -76,6 +87,20 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy {
     if(`/profile/gameInfos/${id}` == this.currentRoute)
       return true;
     return false;
+  }
+
+  onResume(id: number) {
+    this.btnOpts.active = true;
+
+    this.gameService.get(id).pipe(first())
+      .subscribe( 
+        () => {
+          this.btnOpts.active = false;
+          this.router.navigate([`/demo/goban/${id}`]);},
+        error => {
+          this.btnOpts.active = false;
+          this.getServerErrorMessage(error);
+    });
   }
 
   private getServerErrorMessage(httpError: HttpErrorResponse) {

@@ -97,8 +97,6 @@ export class SelectorComponent implements OnInit {
     .subscribe(
       (data) => {
         this.btnOpts.active = false;
-        localStorage.setItem('game', JSON.stringify(data));
-        this.gameService.gameSubject.next(data);
         this.router.navigate([`demo/goban/${data.id}`]);
       },
       error => {

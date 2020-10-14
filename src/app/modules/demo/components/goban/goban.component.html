@@ -1,0 +1,32 @@
+<div class="grid">
+<table [ngStyle]="gridSize()">
+   <tbody>
+      <ng-container  *ngFor="let row of (game$ | async).board.stoneMap; let i=index">
+          <ng-container *ngIf="i != 0">
+            <tr>
+              <ng-container *ngFor="let tile of row; let j=index">
+               <td *ngIf="j != 0"></td>
+              </ng-container>
+            </tr>
+          </ng-container>
+      </ng-container>
+
+   </tbody>
+</table>
+</div>
+<table class="action">
+    <tbody>
+       <tr *ngFor="let row of (game$ | async).board.stoneMap; let i=index">
+            <td (click)="makeMove(i,j)" *ngFor="let tile of row; let j=index">
+               <img [ngStyle]="stonePosition(i, j)" 
+                  *ngIf="(game$ | async).board.stoneMap[i][j] === true"
+                  src="./../../../../../assets/img/stoneWhite.svg"
+                  />
+               <img [ngStyle]="stonePosition(i, j)" 
+                  *ngIf="(game$ | async).board.stoneMap[i][j] === false"
+                  src="./../../../../../assets/img/stoneBlack.svg"
+                  />
+            </td>
+       </tr>
+    </tbody>
+ </table>

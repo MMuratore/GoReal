@@ -18,6 +18,7 @@ import {MatTableModule} from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import { MatProgressButtonsModule  } from 'mat-progress-buttons';
 
@@ -43,7 +44,8 @@ import { MatProgressButtonsModule  } from 'mat-progress-buttons';
     MatPaginatorModule,
     MatSortModule,
     MatProgressButtonsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSlideToggleModule
   ],
   exports: [
     LayoutModule,
@@ -64,7 +66,8 @@ import { MatProgressButtonsModule  } from 'mat-progress-buttons';
     MatPaginatorModule,
     MatSortModule,
     MatProgressButtonsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSlideToggleModule
   ]
 })
 export class SharedModule { }

@@ -1,12 +1,22 @@
-<span class="capture">White Capture {{(game$ | async).whiteCapture}}</span>
-<span class="capture">Black Capture {{(game$ | async).blackCapture}}</span>
-<span class="spacer"></span>
-<div class="row">
-  <div class="col">
-    <button class="full-width" mat-stroked-button (click)="onResign()" type="button">Resign</button> 
+<div class="container white" [ngStyle]="activePlayer((game$ | async).whiteState)">
+  <div class="info">
+    <h1>白 {{(game$ | async).whiteCapture}}</h1>
+    <span>Komi: {{(game$ | async).komi}}</span>
   </div>
-  <div class="col">
-    <button class="full-width" mat-stroked-button (click)="onPass()" type="button">Pass</button> 
+  <div class="action">
+    <mat-spinner-button [ngStyle]="passPlayer((game$ | async).whiteState)" (btnClick)="onPass()" [disabled]="!(game$ | async).whiteState" [options]="whitePassOpts"></mat-spinner-button>  
+    <mat-spinner-button (btnClick)="onResign()" [disabled]="!(game$ | async).whiteState" [options]="whiteResignOpts"></mat-spinner-button>  
   </div>
 </div>
+<div class="container black" [ngStyle]="activePlayer((game$ | async).blackState)">
+  <h1>白 {{(game$ | async).blackCapture}}</h1>
+  <div class="action">
+    <mat-spinner-button [ngStyle]="passPlayer((game$ | async).blackState)" (btnClick)="onPass()" [disabled]="!(game$ | async).blackState" [options]="passOpts"></mat-spinner-button>  
+    <mat-spinner-button (btnClick)="onResign()" [disabled]="!(game$ | async).blackState" [options]="resignOpts"></mat-spinner-button>  
+  </div>
+</div>
+
+
+
+
 

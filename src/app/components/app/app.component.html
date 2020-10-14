@@ -1,3 +1,6 @@
+<audio *ngIf="(settings$ | async).music" autoplay loop>
+  <source src="./assets/sound/background-music.mp3" type="audio/mpeg">
+</audio>
 <mat-sidenav-container class="sidenav-container" (backdropClick)="close()">
   <mat-sidenav #drawer class="sidenav" fixedInViewport disableClose
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
