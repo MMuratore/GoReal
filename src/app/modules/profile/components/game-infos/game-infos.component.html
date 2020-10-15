@@ -2,33 +2,34 @@
     <mat-card-header>
       <div mat-card-avatar><mat-icon class="icon" >games</mat-icon></div>
       <mat-card-title>Game Infos</mat-card-title>
-      <mat-card-subtitle>{{game.startDate | date:'medium'}}</mat-card-subtitle>
+      <mat-card-subtitle>{{(game$ | async).startDate | date:'medium'}} | {{(game$ | async).endDate | date:'medium'}}</mat-card-subtitle>
       <span class="spacer"></span>
       <div class="header-details">
-        <span>Result: {{game.result}}</span>
+        <span *ngIf="(game$ | async).result">Result: {{(game$ | async).result}}</span>
+        <button *ngIf="!(game$ | async).result" mat-stroked-button type="button" routerLink="/demo/goban/{{(game$ | async).id}}">RESUME</button>
       </div>
     </mat-card-header>
     <mat-card-content>
       <div class="details">
         <mat-icon class="icon-black">circle</mat-icon>
-        <span>{{game.blackPlayer.goTag}}</span>
-        <span>Rank: {{game.blackRank}}</span>
-        <span>Capture: {{game.blackCapture}}</span>
+        <span>{{(game$ | async).blackPlayer.goTag}}</span>
+        <span>Rank: {{(game$ | async).blackRank}}</span>
+        <span>Capture: {{(game$ | async).blackCapture}}</span>
       </div>
       <div class="details">
-        <span>{{game.rule.ruleName}} Rule</span>
-        <span>{{game.timeControl.speed}} {{game.timeControl.overTime}}</span>
+        <span>{{(game$ | async).rule.ruleName}} Rule</span>
+        <span>{{(game$ | async).timeControl.speed}} {{(game$ | async).timeControl.overTime}}</span>
         &nbsp;
         <h1>Vs</h1>
-        <span>Size: {{game.size}}x{{game.size}}</span>
-        <span>Komi: {{game.komi}}</span>
-        <span>Handicap: {{game.handicap}}</span>
+        <span>Size: {{(game$ | async).size}}x{{(game$ | async).size}}</span>
+        <span>Komi: {{(game$ | async).komi}}</span>
+        <span>Handicap: {{(game$ | async).handicap}}</span>
       </div>
       <div class="details">
         <mat-icon class="icon-white">circle</mat-icon>
-        <span>{{game.whitePlayer.goTag}}</span>
-        <span>Rank: {{game.whiteRank}}</span>
-        <span>Capture: {{game.whiteCapture}}</span>
+        <span>{{(game$ | async).whitePlayer.goTag}}</span>
+        <span>Rank: {{(game$ | async).whiteRank}}</span>
+        <span>Capture: {{(game$ | async).whiteCapture}}</span>
       </div>
     </mat-card-content>
   </mat-card>

@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'profile', canActivate : [AuthGuardService], loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule) },
   { path: 'administrator', canActivate : [AuthGuardService], data: {roles: Role.SuperAdministrator}, loadChildren: () => import('./modules/administrator/administrator.module').then(m => m.AdministratorModule) },
   { path: 'settings', canActivate : [AuthGuardService], loadChildren: () => import('./modules/settings/settings.module').then(m => m.SettingsModule) },
-  { path: '**', redirectTo: '/notFound' }
+  //{ path: '**', redirectTo: '/notFound' }
 ];
 
 @NgModule({

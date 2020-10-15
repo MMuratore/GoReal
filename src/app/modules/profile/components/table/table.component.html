@@ -33,7 +33,7 @@
         <ng-container matColumnDef="Link">
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let row">
-            <button mat-stroked-button type="button" routerLink="gameInfos/{{row.id}}" [disabled]="rowIsShow(row.id)">DETAILS</button>
+            <button mat-stroked-button type="button" routerLink="gameInfos/{{row.id}}" (click)="onShowDetails(row.id)" [disabled]="rowIsShow(row.id)">DETAILS</button>
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

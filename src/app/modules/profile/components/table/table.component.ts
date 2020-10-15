@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { NavigationStart, Router, Event } from '@angular/router';
+import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import { Observable, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Game } from 'src/app/models/game.model';
@@ -27,7 +28,7 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy {
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['Date', 'Opponent', 'Result', 'Type', 'Link'];
-  
+    
   currentRoute: string;
   routerSubscription: Subscription;
   user$ : Observable<User>;
@@ -38,7 +39,7 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy {
     private router: Router,
     private gameService: GameService,
     private authService: AuthService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.noGamePlayed = false;
@@ -77,6 +78,16 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy {
     return false;
   }
 
+  onShowDetails(id: number) {
+
+    this.gameService.get(id).pipe(first())
+      .subscribe(() => {
+        this.router.navigate([`/profile/gameInfos/${id}`]);
+        },
+      error => {
+        this.getServerErrorMessage(error);
+      });
+  }
   private getServerErrorMessage(httpError: HttpErrorResponse) {
     let msg : string;
     if(httpError.status == 404) {
