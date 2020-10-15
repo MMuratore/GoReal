@@ -122,7 +122,7 @@ export class GobanActionComponent implements OnInit {
   passPlayer(playerState: boolean) {
     if(playerState === null)
       return {
-        'color': `warn`
+        'background-color': `rgba(210,28,28,.5)`
       }
   }
 
